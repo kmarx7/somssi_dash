@@ -1,0 +1,107 @@
+[
+  {
+    "file": "somssi_budget.html",
+    "source_relative": "somssi_budget/index.html",
+    "sha256": "c466080cbd440bf315dbbf57147be6f0663e6e1e818e4ed2fcf3967828d1cd41",
+    "bytes": 12350,
+    "lines": 18,
+    "title": "SOMSSI 1R 예산 배분 대시보드",
+    "storage_keys": [],
+    "functions": [
+      "render",
+      "set",
+      "text"
+    ],
+    "live_url": "https://coruscating-duckanoo-f67d1c.netlify.app/",
+    "inline_style_script_match": true,
+    "local_inline_part_count": 2
+  },
+  {
+    "file": "somssi_meeting.html",
+    "source_relative": "somssi_meeting/index.html",
+    "sha256": "74a54ca1af36d5dfbe13a94b7ab8495938e55bfd0b8117e413a3ae301018f961",
+    "bytes": 11522,
+    "lines": 5,
+    "title": "SOMSSI 팀 회의록",
+    "storage_keys": [
+      "SOMSSI_Meeting_2026_Records"
+    ],
+    "functions": [
+      "save",
+      "stats",
+      "nav",
+      "inp",
+      "form",
+      "row",
+      "doc",
+      "printDocs",
+      "download"
+    ],
+    "live_url": "https://lighthearted-custard-cba5db.netlify.app/",
+    "inline_style_script_match": false,
+    "local_inline_part_count": 2
+  },
+  {
+    "file": "somssi_email.html",
+    "source_relative": "somssi_email/index.html",
+    "sha256": "a228baec6f0a8afb3a3e580bcc0bb0e6c6e744bd9d136b7919c2c0705f6e46e8",
+    "bytes": 35796,
+    "lines": 375,
+    "title": "SOMSSI 메일 템플릿",
+    "storage_keys": [],
+    "functions": [
+      "renderList",
+      "fill",
+      "renderView",
+      "renderLetter",
+      "copyText",
+      "openNew",
+      "renderEditor",
+      "renderDefaults",
+      "save",
+      "remove",
+      "merge",
+      "render"
+    ],
+    "live_url": "https://fluffy-florentine-6c87d5.netlify.app/",
+    "inline_style_script_match": false,
+    "local_inline_part_count": 2
+  },
+  {
+    "file": "somssi_schedule_dash.html",
+    "source_relative": "somssi_schedule_dash/index.html",
+    "sha256": "39a3c21fb128e81e5bce109c610caded829cd151ca97768e4f65ec876c1285bf",
+    "bytes": 26725,
+    "lines": 9,
+    "title": "SOMSSI 2R | 인터랙티브 일정 대시보드",
+    "storage_keys": [
+      "somssi_2r_calendar_v1"
+    ],
+    "functions": [
+      "init",
+      "save",
+      "update",
+      "tab",
+      "renderStats",
+      "renderGantt",
+      "setCalendar",
+      "renderCalendar",
+      "renderWeeks",
+      "renderTasks",
+      "openTask",
+      "renderDetail",
+      "saveDetail",
+      "deleteTask",
+      "createTask",
+      "renderAll",
+      "download",
+      "exportJSON",
+      "importJSON",
+      "exportCSV",
+      "resetData"
+    ],
+    "live_url": "https://moonlit-rugelach-64f4b6.netlify.app/",
+    "inline_style_script_match": true,
+    "local_inline_part_count": 2
+  }
+]

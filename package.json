@@ -1,0 +1,23 @@
+{
+  "name": "somssi-control-center",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @somssi/web",
+    "build": "npm run build --workspace @somssi/web",
+    "start": "npm run start --workspace @somssi/web",
+    "lint": "npm run lint --workspace @somssi/web",
+    "typecheck": "npm run typecheck --workspace @somssi/web",
+    "test:smoke": "node scripts/smoke.mjs",
+    "verify:originals": "python3 scripts/verify-originals.py"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10"
+  }
+}

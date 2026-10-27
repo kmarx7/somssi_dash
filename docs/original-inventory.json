@@ -1,0 +1,1946 @@
+[
+  {
+    "file": "activity_evidence.docx",
+    "source_name": "02_활동비 증빙 양식.docx",
+    "sha256": "9747b66a6a50ea954d63ffde0b6712aec3f002a256c2a71f85dc65cac9799c72",
+    "bytes": 38909,
+    "package_parts": 17,
+    "tables": [
+      {
+        "index": 0,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임2",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 활동비 증빙 양식",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임2",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": " 활동비 증빙 양식",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "순번",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "1",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "활동목적",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": " 역량강화 교육 참가 ",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "일 시 ",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 0000년 00월 00일  14:00~16:00(2시간)",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "장 소",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "00 교육원 등 방문장소 기재",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "세부내용",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 총 집행 금액 :              원비목집행일자세부내용집행금액(원)여비26.11.01.26.11.3 교육장 방문KTX 일반실 서울 → 대전 숙박비26.11.10.26.11.13 교육장 인근 숙박시설(OOOO) 1박 이용",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "현장사진",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "※ 역량강화 교육 수강, 현장 방문 등 창업활동에 따른 활동비 사용을 증빙할 수 있는 사진 1장 이상 첨부",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "비목",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "집행일자",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "세부내용",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "집행금액(원)",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "여비",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "26.11.01.",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "26.11.3 교육장 방문KTX 일반실 서울 → 대전 ",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "숙박비",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "26.11.10.",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "26.11.13 교육장 인근 숙박시설(OOOO) 1박 이용",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "section_properties": [
+      "<ns0:sectPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" ns0:rsidR=\"00FC693F\" ns0:rsidRPr=\"0006063C\" ns0:rsidSect=\"00034616\"><ns0:pgSz ns0:w=\"11906\" ns0:h=\"16838\" /><ns0:pgMar ns0:top=\"0\" ns0:right=\"0\" ns0:bottom=\"0\" ns0:left=\"0\" ns0:header=\"720\" ns0:footer=\"720\" ns0:gutter=\"0\" /><ns0:cols /><ns0:docGrid ns0:linePitch=\"360\" /></ns0:sectPr>"
+    ]
+  },
+  {
+    "file": "meeting_minutes.docx",
+    "source_name": "03_회의록 양식.docx",
+    "sha256": "0ca487761378049a4c7044ebcd97a1382dcea4a2ca3df30eabdd3762e872e643",
+    "bytes": 38698,
+    "package_parts": 17,
+    "tables": [
+      {
+        "index": 0,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임3",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 회의록 양식",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임3",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": " 회의록 양식",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "순 번 ",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "1",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "일 시",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": " 0000년 00월 00일  13:30 ~ 15:30 (2시간)",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "2"
+                  }
+                ],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "장 소",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "OO카페",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "목 적",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 시제품 제작을 위하여 재료에 관한 논의",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "6"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "내 용(참석자포함)",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "(예) OO제작을 위한 OO회의  - 회의내용 1 - 회의내용 2 * 참석자 : 팀원 홍길동, 디자이너 김창업, 000회사 박모두, 000회사 이하나 총 4명※ 회의비의 경우 다과만 구매시 인당 10,000원 이내 집행, 식사 포함인 경우 인당 30,000원이내에서 다과 및 식사 비용 집행 가능 * 주류가 포함되거나 유흥업종·주점 등에서 사용 불가",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "6"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "사 진",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 회의 사진 등 1장 이상 첨부",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "6"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 4,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "참 석 자",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "7"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 5,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "팀원 홍길동   (서명)",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "4"
+                  }
+                ],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 디자이너 김창업  (서명)",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 6,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "000회사 박모두  (서명)",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "4"
+                  }
+                ],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "000회사 이하나  (서명)",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "section_properties": [
+      "<ns0:sectPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" ns0:rsidR=\"00FC693F\" ns0:rsidRPr=\"0006063C\" ns0:rsidSect=\"00034616\"><ns0:pgSz ns0:w=\"11906\" ns0:h=\"16838\" /><ns0:pgMar ns0:top=\"0\" ns0:right=\"0\" ns0:bottom=\"0\" ns0:left=\"0\" ns0:header=\"720\" ns0:footer=\"720\" ns0:gutter=\"0\" /><ns0:cols /><ns0:docGrid ns0:linePitch=\"360\" /></ns0:sectPr>"
+    ]
+  },
+  {
+    "file": "purchase_justification.docx",
+    "source_name": "04_물품 구매 사유서.docx",
+    "sha256": "170a5f84b891f35b01309eb3e33ca91226fd0b9eaca1e16b0e3394c631372182",
+    "bytes": 38694,
+    "package_parts": 17,
+    "tables": [
+      {
+        "index": 0,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임4",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "물품 구매 사유서",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임4",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "물품 구매 사유서",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "신청자 성명",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "멘토기관",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "생년월일",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "연락처",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "아이디어",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "기존에 냈던 아이디어 간단히 작성",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "□ 구매사유구매물품명물품가액(부가세 포함)구매사유구매한 물품과 아이디어 연관성에 대해서 구체적으로 작성물품사진 물품사진 2장 이상 첨부필요□ 임차 불가 사유임차료가 물품가격을 초과하거나 시중 임차가 불가능하여 해당 장비·기기·물품 등을 구매해야 하는 사유를 구체적으로 기재신청자년월 (인)일멘토기관장(○○○) 귀하",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "4"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "구매물품명",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "물품가액(부가세 포함)",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "구매사유",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "구매한 물품과 아이디어 연관성에 대해서 구체적으로 작성",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "물품사진",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": " 물품사진 2장 이상 첨부필요",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "임차료가 물품가격을 초과하거나 시중 임차가 불가능하여 해당 장비·기기·물품 등을 구매해야 하는 사유를 구체적으로 기재",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "신청자",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "년",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "월",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": " (인)",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "일",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "section_properties": [
+      "<ns0:sectPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" ns0:rsidR=\"00FC693F\" ns0:rsidRPr=\"0006063C\" ns0:rsidSect=\"00034616\"><ns0:pgSz ns0:w=\"11906\" ns0:h=\"16838\" /><ns0:pgMar ns0:top=\"0\" ns0:right=\"0\" ns0:bottom=\"0\" ns0:left=\"0\" ns0:header=\"720\" ns0:footer=\"720\" ns0:gutter=\"0\" /><ns0:cols /><ns0:docGrid ns0:linePitch=\"360\" /></ns0:sectPr>"
+    ]
+  },
+  {
+    "file": "team_participation.docx",
+    "source_name": "05_팀원 참여 확인서.docx",
+    "sha256": "7d9a454818038a66e63e9483bcba6c5febe110adc03a00110e1e06ed6eaa1621",
+    "bytes": 38959,
+    "package_parts": 17,
+    "tables": [
+      {
+        "index": 0,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임5",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "팀원 참여 확인서",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "붙임5",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 2,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "팀원 참여 확인서",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 3,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "모두의 창업 (로컬트랙) [창업활동자금 증빙용] 팀원 참여 확인서",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "성명",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "멘토기관",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "생년월일",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "연락처",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "아이디어",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "기존에 냈던 아이디어 간단히 작성",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "3"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "대표자 본인과 함께 아래의 팀원이 모두의 창업 창업활동에 참여하고 있음을 확인합니다.연번성명관계소속/직위활동기간담당역할서명1홍길동배우자팀원/기획팀장26.10.19~서비스 기획 및 시장조사2김영희동료팀원/디자이너26.10.19~UI/UX 디자인 및 콘텐츠 제작신청자년월 (인)일멘토기관장(○○○) 귀하",
+                "gridSpan": [
+                  {
+                    "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val": "4"
+                  }
+                ],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "연번",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "성명",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "관계",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "소속/직위",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "활동기간",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "담당역할",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 6,
+                "text": "서명",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 1,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "1",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "홍길동",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "배우자",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "팀원/기획팀장",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "26.10.19~",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "서비스 기획 및 시장조사",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 6,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 2,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "2",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "김영희",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "동료",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "팀원/디자이너",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "26.10.19~",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "UI/UX 디자인 및 콘텐츠 제작",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 6,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 3,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 6,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 4,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 6,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          },
+          {
+            "row": 5,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 5,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 6,
+                "text": "",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "rows": [
+          {
+            "row": 0,
+            "cells": [
+              {
+                "cell": 0,
+                "text": "신청자",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 1,
+                "text": "년",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 2,
+                "text": "월",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 3,
+                "text": " (인)",
+                "gridSpan": [],
+                "vMerge": []
+              },
+              {
+                "cell": 4,
+                "text": "일",
+                "gridSpan": [],
+                "vMerge": []
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "section_properties": [
+      "<ns0:sectPr xmlns:ns0=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" ns0:rsidR=\"00FC693F\" ns0:rsidRPr=\"0006063C\" ns0:rsidSect=\"00034616\"><ns0:pgSz ns0:w=\"11906\" ns0:h=\"16838\" /><ns0:pgMar ns0:top=\"0\" ns0:right=\"0\" ns0:bottom=\"0\" ns0:left=\"0\" ns0:header=\"720\" ns0:footer=\"720\" ns0:gutter=\"0\" /><ns0:cols /><ns0:docGrid ns0:linePitch=\"360\" /></ns0:sectPr>"
+    ]
+  },
+  {
+    "file": "fund_usage_details.xlsx",
+    "source_name": "[첨부3] 2기 창업활동자금 세부내역 엑셀.xlsx",
+    "sha256": "e8313e491c929b6c33689d9684b43e01bd7b5333662d26a4cbbcf332bf30df9f",
+    "bytes": 14719,
+    "package_parts": 14,
+    "sheets": [
+      {
+        "name": "창업활동자금(활동비 포함) 상세내역",
+        "sheetId": "1",
+        "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id": "rId1"
+      }
+    ],
+    "defined_names": [],
+    "worksheets": [
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "cells": [
+          {
+            "address": "A1",
+            "style": "23",
+            "value": "□ 창업활동자금 집행 상세내역(활동비 집행 상세내역 포함)",
+            "formula": null
+          },
+          {
+            "address": "A2",
+            "style": "14",
+            "value": "권역, 비목은 드롭박스가 들어가 있습니다. 셀을 누르면 드롭박스활용 가능합니다.",
+            "formula": null
+          },
+          {
+            "address": "A3",
+            "style": "14",
+            "value": "활동비 60만원 한도에서 사용 가능",
+            "formula": null
+          },
+          {
+            "address": "A4",
+            "style": "20",
+            "value": "[붙임1] 창업활동자금 신청서, [붙임2] 활동비 증빙 양식, [붙임3] 회의록 양식, [붙임4] 물품 구매 사유서, [붙임5] 팀원 참여 확인서",
+            "formula": null
+          },
+          {
+            "address": "A5",
+            "style": "15",
+            "value": "연번",
+            "formula": null
+          },
+          {
+            "address": "B5",
+            "style": "16",
+            "value": "권역(드롭박스 활용)",
+            "formula": null
+          },
+          {
+            "address": "C5",
+            "style": "15",
+            "value": "선정자명",
+            "formula": null
+          },
+          {
+            "address": "D5",
+            "style": "15",
+            "value": "집행항목",
+            "formula": null
+          },
+          {
+            "address": "E5",
+            "style": "17",
+            "value": "비목(드롭박스 활용)",
+            "formula": null
+          },
+          {
+            "address": "F5",
+            "style": "15",
+            "value": "세부내역(구매·집행 내용)",
+            "formula": null
+          },
+          {
+            "address": "G5",
+            "style": "15",
+            "value": "거래처명",
+            "formula": null
+          },
+          {
+            "address": "H5",
+            "style": "15",
+            "value": "지출일자",
+            "formula": null
+          },
+          {
+            "address": "I5",
+            "style": "15",
+            "value": "집행금액(원)",
+            "formula": null
+          },
+          {
+            "address": "J5",
+            "style": "15",
+            "value": "증빙",
+            "formula": null
+          },
+          {
+            "address": "A6",
+            "style": "8",
+            "value": "1",
+            "formula": null
+          },
+          {
+            "address": "B6",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "C6",
+            "style": "7",
+            "value": "김길동",
+            "formula": null
+          },
+          {
+            "address": "D6",
+            "style": "8",
+            "value": "시제품제작",
+            "formula": null
+          },
+          {
+            "address": "E6",
+            "style": "8",
+            "value": "소모품비",
+            "formula": null
+          },
+          {
+            "address": "F6",
+            "style": "8",
+            "value": "색종이, 자, 펜 구매",
+            "formula": null
+          },
+          {
+            "address": "G6",
+            "style": "8",
+            "value": "000 문구",
+            "formula": null
+          },
+          {
+            "address": "H6",
+            "style": "8",
+            "value": "26.11.01.",
+            "formula": null
+          },
+          {
+            "address": "I6",
+            "style": "9",
+            "value": "200000",
+            "formula": null
+          },
+          {
+            "address": "J6",
+            "style": "18",
+            "value": "1. 시제품증빙 .pdf",
+            "formula": null
+          },
+          {
+            "address": "A7",
+            "style": "10",
+            "value": "2",
+            "formula": null
+          },
+          {
+            "address": "B7",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "C7",
+            "style": "7",
+            "value": "김길동",
+            "formula": null
+          },
+          {
+            "address": "D7",
+            "style": "10",
+            "value": "활동비",
+            "formula": null
+          },
+          {
+            "address": "E7",
+            "style": "8",
+            "value": "회의비",
+            "formula": null
+          },
+          {
+            "address": "F7",
+            "style": "10",
+            "value": "아이디어 회의 식사(3명)",
+            "formula": null
+          },
+          {
+            "address": "G7",
+            "style": "10",
+            "value": "00식당",
+            "formula": null
+          },
+          {
+            "address": "H7",
+            "style": "10",
+            "value": "26.11.10.",
+            "formula": null
+          },
+          {
+            "address": "I7",
+            "style": "11",
+            "value": "30000",
+            "formula": null
+          },
+          {
+            "address": "J7",
+            "style": "18",
+            "value": "2. 회의록 증빙 양식1.pdf",
+            "formula": null
+          },
+          {
+            "address": "A8",
+            "style": "8",
+            "value": "3",
+            "formula": null
+          },
+          {
+            "address": "B8",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "C8",
+            "style": "7",
+            "value": "김길동",
+            "formula": null
+          },
+          {
+            "address": "D8",
+            "style": "8",
+            "value": "역량개발",
+            "formula": null
+          },
+          {
+            "address": "E8",
+            "style": "8",
+            "value": "기타운영비",
+            "formula": null
+          },
+          {
+            "address": "F8",
+            "style": "8",
+            "value": "시제품 제작 교육 수강",
+            "formula": null
+          },
+          {
+            "address": "G8",
+            "style": "8",
+            "value": "ㅁㅁ교육원",
+            "formula": null
+          },
+          {
+            "address": "H8",
+            "style": "8",
+            "value": "26.11.15.",
+            "formula": null
+          },
+          {
+            "address": "I8",
+            "style": "9",
+            "value": "150000",
+            "formula": null
+          },
+          {
+            "address": "J8",
+            "style": "18",
+            "value": "3. 시제품증빙 .pdf",
+            "formula": null
+          },
+          {
+            "address": "A9",
+            "style": "10",
+            "value": "4",
+            "formula": null
+          },
+          {
+            "address": "B9",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "C9",
+            "style": "7",
+            "value": "김길동",
+            "formula": null
+          },
+          {
+            "address": "D9",
+            "style": "10",
+            "value": "활동비",
+            "formula": null
+          },
+          {
+            "address": "E9",
+            "style": "8",
+            "value": "여비",
+            "formula": null
+          },
+          {
+            "address": "F9",
+            "style": "10",
+            "value": "역량교육 참가를 위한\nKTX 일반실 탑승(11.18) (서울 → 대전)",
+            "formula": null
+          },
+          {
+            "address": "G9",
+            "style": "10",
+            "value": "한국철도공사",
+            "formula": null
+          },
+          {
+            "address": "H9",
+            "style": "10",
+            "value": "26.11.16",
+            "formula": null
+          },
+          {
+            "address": "I9",
+            "style": "11",
+            "value": "40000",
+            "formula": null
+          },
+          {
+            "address": "J9",
+            "style": "18",
+            "value": "4. 활동비증빙.pdf",
+            "formula": null
+          },
+          {
+            "address": "A10",
+            "style": "8",
+            "value": "5",
+            "formula": null
+          },
+          {
+            "address": "B10",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A11",
+            "style": "10",
+            "value": "6",
+            "formula": null
+          },
+          {
+            "address": "B11",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A12",
+            "style": "8",
+            "value": "7",
+            "formula": null
+          },
+          {
+            "address": "B12",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A13",
+            "style": "10",
+            "value": "8",
+            "formula": null
+          },
+          {
+            "address": "B13",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A14",
+            "style": "8",
+            "value": "9",
+            "formula": null
+          },
+          {
+            "address": "B14",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A15",
+            "style": "10",
+            "value": "10",
+            "formula": null
+          },
+          {
+            "address": "B15",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A16",
+            "style": "8",
+            "value": "11",
+            "formula": null
+          },
+          {
+            "address": "B16",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A17",
+            "style": "10",
+            "value": "12",
+            "formula": null
+          },
+          {
+            "address": "B17",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A18",
+            "style": "8",
+            "value": "13",
+            "formula": null
+          },
+          {
+            "address": "B18",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A19",
+            "style": "10",
+            "value": "14",
+            "formula": null
+          },
+          {
+            "address": "B19",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A20",
+            "style": "8",
+            "value": "15",
+            "formula": null
+          },
+          {
+            "address": "B20",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A21",
+            "style": "10",
+            "value": "16",
+            "formula": null
+          },
+          {
+            "address": "B21",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A22",
+            "style": "8",
+            "value": "17",
+            "formula": null
+          },
+          {
+            "address": "B22",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A23",
+            "style": "10",
+            "value": "18",
+            "formula": null
+          },
+          {
+            "address": "B23",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A24",
+            "style": "8",
+            "value": "19",
+            "formula": null
+          },
+          {
+            "address": "B24",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A25",
+            "style": "10",
+            "value": "20",
+            "formula": null
+          },
+          {
+            "address": "B25",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A26",
+            "style": "8",
+            "value": "21",
+            "formula": null
+          },
+          {
+            "address": "B26",
+            "style": "3",
+            "value": "수도권(서울창경)",
+            "formula": null
+          },
+          {
+            "address": "A27",
+            "style": "22",
+            "value": "집행금액 합계",
+            "formula": null
+          },
+          {
+            "address": "I27",
+            "style": "9",
+            "value": "420000",
+            "formula": "SUM(I6:I26)"
+          },
+          {
+            "address": "A28",
+            "style": "13",
+            "value": "* 필요시 칸 추가 가능 ** 지급요청액과 집행금액은 일치해야 함",
+            "formula": null
+          },
+          {
+            "address": "A29",
+            "style": "21",
+            "value": "*** 순번별 증빙서류를 스캔하여 별도 첨부(첨부파일 순번별로 정리)",
+            "formula": null
+          }
+        ],
+        "merges": [
+          "A4:J4",
+          "A29:G29",
+          "A27:H27",
+          "A1:D1"
+        ],
+        "page_setup": [
+          {
+            "paperSize": "9",
+            "orientation": "portrait",
+            "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id": "rId1"
+          }
+        ],
+        "validations": [
+          {
+            "type": "list",
+            "allowBlank": "1",
+            "showInputMessage": "1",
+            "showErrorMessage": "1",
+            "sqref": "B6:B26"
+          },
+          {
+            "type": "list",
+            "allowBlank": "1",
+            "showInputMessage": "1",
+            "showErrorMessage": "1",
+            "sqref": "E6:E26"
+          }
+        ]
+      }
+    ]
+  }
+]

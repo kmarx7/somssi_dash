@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.env*
+!.env.example
+original-templates/*
+!original-templates/README.md
+reference-sources/*
+!reference-sources/README.md
+*.tsbuildinfo
+.DS_Store
+test-results/
+playwright-report/
