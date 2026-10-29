@@ -113,6 +113,13 @@ export const navigation: { group: string; items: NavItem[] }[] = [
     group: "COLLABORATION",
     items: [
       {
+        href: "/ai-usage",
+        title: "AI 솔루션 활용",
+        icon: "chart",
+        phase: "V2",
+        description: "실제 활용과 지원 프로그램을 구분합니다.",
+      },
+      {
         href: "/team",
         title: "팀원 관리",
         icon: "team",

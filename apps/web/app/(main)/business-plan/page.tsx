@@ -1,3 +1,7 @@
+import {
+  ConnectionNotice,
+  RecordManager,
+} from "@/components/operations/record-manager";
 import { Badge, Notice, PageHeader, Panel } from "@/components/ui";
 import { planSections, sourceRegistry, v2Reference } from "@/data/reference/v2";
 export const metadata = { title: "사업계획·가설" };
@@ -8,8 +12,10 @@ export default function BusinessPlan() {
         eyebrow="BUSINESS PLAN · Q1–Q4"
         title="사업계획·가설 준비"
         description={v2Reference.vision}
-        action={<Badge tone="amber">기준 정비 · 입력·저장 미구현</Badge>}
+        action={<Badge tone="amber">가설 입력·출처 관리</Badge>}
       />
+      <ConnectionNotice />
+      <RecordManager kind="hypotheses" />
       <Notice>
         최종개정 사업계획서와 공식 HWP 양식이 미확보되어 문서 간 불일치를 아직
         판정할 수 없습니다. 아래 내용은 사용자 제공 요구사항에 따른 계획

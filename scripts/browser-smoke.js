@@ -20,6 +20,8 @@
     ["/dashboard/demo", "오늘의 실행"],
     ["/business-plan", "사업계획·가설"],
     ["/products", "가야금 상품"],
+    ["/tasks/demo", "업무·마일스톤 데모"],
+    ["/ai-usage", "AI 솔루션 활용"],
     ["/schedule", "실행 일정"],
     ["/activities", "사업 활동"],
     ["/tasks", "업무·마일스톤"],
@@ -33,7 +35,7 @@
     ["/communications", "이메일 템플릿"],
     ["/validation", "성과·파일럿"],
     ["/settings", "프로젝트 설정"],
-    ["/login", "로그인 미구현"],
+    ["/login", "팀 계정 로그인"],
   ];
   for (const [path, text] of routes) {
     const response = await fetch(base + path, {
@@ -43,7 +45,9 @@
     const html = await response.text();
     assert.ok(html.includes(text), `${path}: expected page content`);
     assert.ok(
-      html.includes("데모") || html.includes("데이터 미연결"),
+      html.includes("데모") ||
+        html.includes("연결") ||
+        html.includes("팀 계정 로그인"),
       `${path}: data disclosure required`,
     );
     assert.ok(
@@ -78,7 +82,7 @@
     assert.equal(response.status, 404, path);
     console.log("PASS 404", path);
   }
-  console.log("PASS root redirect; 19 pages; 5 missing/private paths");
+  console.log("PASS root redirect; 21 pages; 5 missing/private paths");
 
   return results;
 })();

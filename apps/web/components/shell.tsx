@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { useWorkspace } from "./operations/workspace";
 import { usePathname } from "next/navigation";
 import { navigation, allItems } from "@/lib/navigation";
 import { Icon } from "./icon";
@@ -51,7 +52,16 @@ function Brand() {
 }
 export function Shell({ children }: { children: ReactNode }) {
   const path = usePathname();
-  const demo = path === "/tasks" || path === "/dashboard/demo";
+  const demo = path === "/tasks/demo" || path === "/dashboard/demo";
+  const { workspace } = useWorkspace();
+  const connected = workspace.state === "connected";
+  const connectionLabel = connected
+    ? "서버 저장 연결"
+    : workspace.state === "signed_out"
+      ? "로그인 필요"
+      : workspace.state === "loading"
+        ? "연결 확인 중"
+        : "데이터 미연결";
   const title =
     allItems.find(
       (item) => path === item.href || path.startsWith(item.href + "/"),
@@ -65,8 +75,8 @@ export function Shell({ children }: { children: ReactNode }) {
         <Brand />
         <Navigation />
         <div className="sidebar-footer">
-          <span className="status-dot" /> V2 기준 정비
-          <small>읽기 전용 · 서버 미연결</small>
+          <span className="status-dot" /> V2 운영 관리
+          <small>{connectionLabel}</small>
         </div>
       </aside>
       <div className="workspace">
@@ -77,9 +87,12 @@ export function Shell({ children }: { children: ReactNode }) {
             <strong>{title}</strong>
           </div>
           <div className="topbar-right">
-            <Badge tone="amber">{demo ? "데모" : "데이터 미연결"}</Badge>
+            <Badge tone="amber">{demo ? "데모" : connectionLabel}</Badge>
             <span className="program-name">모두의창업 · 2라운드</span>
-            <span className="avatar" aria-label="데모 프로젝트">
+            <Link href="/login" className="text-link">
+              {connected ? "계정" : "로그인"}
+            </Link>
+            <span className="avatar" aria-label="프로젝트">
               S
             </span>
           </div>
@@ -91,10 +104,12 @@ export function Shell({ children }: { children: ReactNode }) {
         <main id="main-content" className="content" tabIndex={-1}>
           <div className="demo-strip">
             <span>
-              <strong>{demo ? "샘플 데이터" : "운영 데이터 미연결"}</strong> ·{" "}
+              <strong>{demo ? "샘플 데이터" : connectionLabel}</strong> ·{" "}
               {demo
                 ? "화면 시연용이며 저장되지 않습니다."
-                : "실제 기록의 등록·수정·저장은 아직 지원하지 않습니다."}
+                : connected
+                  ? "운영 기록과 서버 변경 이력을 함께 관리합니다."
+                  : "로그인·저장소 연결 후 실제 기록을 저장할 수 있습니다."}
             </span>
             <Link href="/settings">
               구현 범위 확인 <span aria-hidden="true">→</span>
@@ -103,7 +118,7 @@ export function Shell({ children }: { children: ReactNode }) {
           {children}
           <footer className="content-footer">
             <span>SOMSSI 2R CONTROL CENTER</span>
-            <span>V2 기준 정비 · 운영 데이터 미연결</span>
+            <span>{demo ? "데모 · 저장되지 않음" : connectionLabel}</span>
           </footer>
         </main>
       </div>

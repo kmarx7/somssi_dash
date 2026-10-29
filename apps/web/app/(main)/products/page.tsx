@@ -1,3 +1,8 @@
+import { ScenarioAnalysis } from "@/components/operations/analytics";
+import {
+  ConnectionNotice,
+  RecordManager,
+} from "@/components/operations/record-manager";
 import { Badge, Notice, PageHeader, Panel } from "@/components/ui";
 import { v2Reference } from "@/data/reference/v2";
 export const metadata = { title: "가야금 상품" };
@@ -8,8 +13,12 @@ export default function Products() {
         eyebrow="GAYAGEUM · PRODUCT HYPOTHESIS"
         title="가야금 상품 검증 준비"
         description="확정 상품과 실험 시나리오를 구분합니다."
-        action={<Badge tone="amber">가설 · 저장 미구현</Badge>}
+        action={<Badge tone="amber">상품·시나리오 관리</Badge>}
       />
+      <ConnectionNotice />
+      <ScenarioAnalysis />
+      <RecordManager kind="products" />
+      <RecordManager kind="scenarios" />
       <Notice>
         최종개정 사업계획서가 없어 가격·원가·정원은 미입력입니다. 60분과 120분은
         비교할 운영 가설이며 판매 확정 상품이나 실제 실적이 아닙니다.

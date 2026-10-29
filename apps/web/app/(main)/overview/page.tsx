@@ -90,7 +90,7 @@ export default function Overview() {
         </Panel>
         <Panel
           title="현재 개발 단계"
-          meta={<Badge tone="blue">V2 기준 정비</Badge>}
+          meta={<Badge tone="blue">V2 운영 관리</Badge>}
         >
           <ol className="phase-list">
             <li className="phase-active">
@@ -99,23 +99,23 @@ export default function Overview() {
                 <strong>웹앱 프론트엔드 골격</strong>
                 <p>기존 메뉴·업무 필터 보존 · 기준자료·상품 가설 추가</p>
               </div>
-              <Badge tone="blue">현재</Badge>
+              <Badge tone="green">보존</Badge>
             </li>
             <li>
               <span>02</span>
               <div>
                 <strong>데이터·로그인 연결</strong>
-                <p>공유 DB · 권한 · 업무·일정 저장</p>
+                <p>인증·권한·업무·실증·정산 기록과 감사 이력</p>
               </div>
-              <Badge>미구현</Badge>
+              <Badge>구현 · 운영 연결 대기</Badge>
             </li>
             <li>
               <span>03–06</span>
               <div>
                 <strong>앱 통합부터 정산·출력까지</strong>
-                <p>원본 검증 후 단계별로 구현</p>
+                <p>실증·집행·증빙 구현, 공식 출력·복원·배포는 남음</p>
               </div>
-              <Badge>미구현</Badge>
+              <Badge>부분 구현</Badge>
             </li>
           </ol>
           <Link className="text-link" href="/settings">

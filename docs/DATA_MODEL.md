@@ -88,3 +88,21 @@ Storage 세 버킷은 비공개이며 경로 첫 세그먼트 project_id와 멤�
 M2 게이트: 역할별 CRUD, 비멤버/탈퇴자/타 프로젝트 접근, 위조 project_id, 승인자=요청자 정책, Storage URL 만료, audit 변경 거부 테스트. M1은 공개 데모이므로 실데이터 입력·보관 기능이 없다.
 
 설계 참고: [Supabase RLS](https://supabase.com/docs/guides/database/postgres/row-level-security), [Storage 접근 제어](https://supabase.com/docs/guides/storage/security/access-control).
+
+## V2 운영 구현 (2026-10-30)
+
+상단은 M1 설계 기록이다. 이번 구현은 공통 버전 관리와 가설/실적 간 연결을 먼저 제공하며, 물리 테이블을 다음과 같이 구성했다.
+
+- `somssi_projects`, `somssi_project_members`: 고정 프로젝트와 활성 멤버십. 로그인 사용자와 참여 인물 people을 구분한다.
+- `somssi_records`: 프로젝트·도메인 kind·검증된 JSONB payload·created_by·version·생성/수정 시각. 도메인별 필드는 lib/operations/domains.ts, SQL 검증 규칙은 private kind_rules에 고정한다. 자의적인 JSON 문서 쓰기는 허용하지 않는다.
+- `somssi_record_links`: 동일 project_id의 record_id와 target_id를 복합 FK로 연결하며 필드별 예상 도메인도 검증한다. 다른 프로젝트/다른 종류/자기 자신을 가리키는 참조를 거부한다.
+- `somssi_audit_logs`: 이전/변경 이후 값과 행위자·시각. 기록 변경과 같은 DB 트랜잭션에 append하며 클라이언트 수정/삭제 권한이 없다.
+- `somssi_private.write_record`: 명시적 auth.uid()/활성 역할 검사 후 입력 규칙·참조·재무 정정·version을 검증한다. private SECURITY DEFINER 함수는 일반 테이블 쓰기 권한을 대신하는 좁은 경계이며 고정 search_path/권한 취소/역할 검사를 적용했다. 공개 wrapper는 SECURITY INVOKER다.
+
+현재 물리 모델은 모든 도메인을 개별 테이블22개로 분리한 최종 ERD가 아니라, 21개 운영 종류의 검증된 버전 기록과 정규화된 FK 연결을 공통 저장하는 단계다. 향후 물리 테이블을 분리할 때 같은 ID/버전/감사 원본을 보존한다. 이 차이를 명시하며 이전 설계 전체를 완료했다고 주장하지 않는다.
+
+돈은 0.1 같은 부동소수 단위가 아니라 원 단위 정수로 검증하고 DB 계산에서 bigint로 변환한다. JSONB의 수치는 PostgreSQL numeric으로 정확하게 저장되며 앱 경계는 항목별 ±10억 원 범위와 안전 정수 합계를 검사한다. 증감 정정은 원거래를 남기고 추가 기록으로 저장한다. 정정 그룹의 모든 분개를 검토하기 전에는 전체 그룹을 정산 완료 합계에 포함하지 않는다.
+
+역할: owner/admin 전체 운영 수정·정산 검토·감사/백업, editor 자기 생성 기록 수정·거래 기록·자기 원거래 정정, viewer 조회. 결제 완료/지출/증빙은 불변. 증빙 원본은 viewer에게 거부하고 editor는 자기 업로드만, owner/admin은 프로젝트 내 파일을 접근한다. 소속 없는 프로젝트는 읽기/쓰기 모두 차단한다. 멤버십 변경은 관리자 SQL로만 수행하며 감사 트리거를 남긴다.
+
+API → JWT 검증(getUser) → 멤버십 → Zod → 저장 RPC → SQL 검증/관계/버전 → 기록+감사 원자 커밋 → 같은 기록 조회 → Dashboard projection. 디스크 재시작 영속성·다른 프로젝트 FK·버전 충돌·권한·정정 합계는 실제 PostgreSQL 테스트로 확인한다. 실제 클라우드 설치/RLS advisory·Auth·Storage 검증은 운영 프로젝트가 지정된 뒤 필요하다.

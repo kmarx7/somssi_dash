@@ -1277,3 +1277,17 @@ tbody tr:last-child td {
     transition: none !important;
   }
 }
+
+/* Operational forms extend the existing tokens and panels. Legacy budget is untouched. */
+.operation-form { margin: 20px 0; padding: 20px; background: var(--bg); border: 1px solid var(--border); border-radius: 9px; }
+.operation-fields { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 16px; margin: 18px 0; }
+.operation-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.operation-field label { font-size: 12px; color: var(--ink); }
+.operation-field input, .operation-field select, .operation-field textarea { width: 100%; padding: 10px; background: white; color: var(--ink); border: 1px solid var(--border); border-radius: 6px; font: inherit; }
+.operation-field input[type=checkbox] { width: 20px; height: 20px; }
+.operation-field textarea { min-height: 100px; resize: vertical; }
+.operation-field select[multiple] { min-height: 100px; }
+.operation-field small { color: var(--muted); font-size: 10px; }
+.field-wide { grid-column: 1 / -1; }
+.operation-legacy { margin-bottom: 24px; }
+@media(max-width:800px) { .operation-fields { grid-template-columns: 1fr; } .operation-form { padding: 14px; } }
