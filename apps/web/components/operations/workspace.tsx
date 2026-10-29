@@ -17,6 +17,8 @@ export type WorkspaceState = {
     | "error"
     | "connected";
   error?: string;
+  mode?: "local";
+  storage?: { directory: string; database: string; account: string };
   project?: { id: string; name: string; deadline: string; budget_won: number };
   role?: "owner" | "admin" | "editor" | "viewer";
   userId?: string;

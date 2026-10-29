@@ -1,87 +1,90 @@
 import { createHash, randomUUID } from "node:crypto";
-import { authorize } from "@/lib/supabase/server";
-import { checkMutation, boundedFormData, dbError } from "@/lib/operations/http";
+import { mkdir, open, unlink } from "node:fs/promises";
+import path from "node:path";
+import {
+  localStore,
+  localJson,
+  localFailure,
+  rejectLocalRequest,
+} from "@/lib/local/server";
+import { boundedFormData } from "@/lib/operations/http";
 import { validatePayload } from "@/lib/operations/validation";
+export const runtime = "nodejs";
 export async function POST(request: Request) {
-  const auth = await authorize();
-  if ("response" in auth) return auth.response;
-  const csrf = checkMutation(request);
-  if (csrf) return auth.respond({ error: csrf }, 403);
-  if (auth.role === "viewer")
-    return auth.respond(
-      { error: "조회 전용 계정은 증빙을 업로드할 수 없습니다." },
-      403,
-    );
+  const denied = rejectLocalRequest(request);
+  if (denied) return denied;
+  let form: FormData;
   try {
-    const form = await boundedFormData(request);
-    const file = form.get("file");
-    if (!(file instanceof File) || file.size === 0 || file.size > 10485760)
-      throw new Error("0바이트를 초과하고 10MB 이하인 파일을 선택해 주세요.");
-    const ext = file.name.split(".").pop()?.toLowerCase();
-    if (
-      !ext ||
-      !["pdf", "png", "jpg", "jpeg", "webp", "docx", "xlsx"].includes(ext)
-    )
-      throw new Error("PDF·이미지(PNG/JPG/WebP)·DOCX·XLSX 파일만 지원합니다.");
+    form = await boundedFormData(request);
+  } catch {
+    return localJson(
+      {
+        error:
+          "유효한 파일을 선택해 주세요. 최대 10MB까지 업로드할 수 있습니다.",
+      },
+      422,
+    );
+  }
+  const file = form.get("file");
+  if (!(file instanceof File) || file.size === 0 || file.size > 10485760)
+    return localJson(
+      { error: "0바이트 초과·10MB 이하 파일을 선택해 주세요." },
+      422,
+    );
+  const ext = file.name.split(".").pop()?.toLowerCase();
+  if (
+    !ext ||
+    !["pdf", "png", "jpg", "jpeg", "webp", "docx", "xlsx"].includes(ext)
+  )
+    return localJson(
+      { error: "PDF·PNG/JPG/WebP·DOCX·XLSX 파일만 지원합니다." },
+      422,
+    );
+  let filename: string | undefined;
+  let created = false;
+  try {
+    const store = localStore();
     const id = randomUUID();
-    const path = `${auth.projectId}/${auth.userId}/${id}.${ext}`;
-    const bytes = await file.arrayBuffer();
-    const hash = createHash("sha256")
-      .update(new Uint8Array(bytes))
-      .digest("hex");
+    const bytes = new Uint8Array(await file.arrayBuffer());
     const payload = validatePayload("evidence", {
       title: String(form.get("title") ?? ""),
       evidenceType: String(form.get("evidenceType") ?? ""),
-      storagePath: path,
+      storagePath: `${store.project.id}/${store.userId}/${id}.${ext}`,
       originalName: file.name.replace(/[\x00-\x1f/\\]/g, "_").slice(0, 200),
-      sha256: hash,
+      sha256: createHash("sha256").update(bytes).digest("hex"),
       size: file.size,
       contentType: "application/octet-stream",
-      source: "사용자 직접 업로드",
+      source: "사용자 로컬 업로드",
       checkedAt: new Date().toISOString().slice(0, 10),
       verificationStatus: "확인 필요",
       evidenceIds: [],
     });
-    const upload = await auth.client.storage
-      .from("somssi-evidence")
-      .upload(path, bytes, {
-        contentType: "application/octet-stream",
-        upsert: false,
-      });
-    if (upload.error)
-      return auth.respond(
-        {
-          error:
-            "비공개 파일 저장에 실패했습니다. 버킷·권한·연결 상태를 확인해 주세요.",
-        },
-        503,
-      );
-    const record = await auth.client.rpc("somssi_write_record", {
-      p_project_id: auth.projectId,
-      p_id: id,
-      p_kind: "evidence",
-      p_payload: payload,
-      p_expected_version: 0,
+    filename = store.evidencePath({
+      id,
+      project_id: store.project.id,
+      kind: "evidence",
+      payload,
+      version: 1,
+      created_by: store.userId,
+      created_at: "",
+      updated_at: "",
     });
-    if (record.error) {
-      const failure = dbError(record.error.code);
-      return auth.respond(
-        {
-          error: `파일은 비공개 업로드되었지만 증빙 등록이 완료되지 않았습니다. 관리자에게 파일 ID ${id}로 확인을 요청해 주세요. ${failure.error}`,
-        },
-        failure.status,
-      );
+    await mkdir(path.dirname(filename), { recursive: true, mode: 0o700 });
+    const handle = await open(filename, "wx", 0o600);
+    created = true;
+    try {
+      await handle.writeFile(bytes);
+      await handle.sync();
+    } finally {
+      await handle.close();
     }
-    return auth.respond({ record: record.data }, 201);
+    const record = store.write("evidence", id, payload, 0);
+    filename = undefined;
+    return localJson({ record }, 201);
   } catch (error) {
-    return auth.respond(
-      {
-        error:
-          error instanceof Error && !("issues" in error)
-            ? error.message
-            : "파일과 필수 항목을 확인해 주세요.",
-      },
-      422,
-    );
+    if (filename && created) await unlink(filename).catch(() => {}); // Only the uncommitted, newly created upload; never an expense or existing evidence.
+    if (error instanceof Error && "issues" in error)
+      return localJson({ error: "증빙 제목·유형을 확인해 주세요." }, 422);
+    return localFailure(error);
   }
 }

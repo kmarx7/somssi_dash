@@ -14,3 +14,7 @@ playwright-report/
 # Supabase CLI machine-local state
 supabase/.temp/
 supabase/.branches/
+
+# Private local operating DB, receipts, signatures and backups. Never publish.
+.somssi-local/
+*.somssi-backup.gz

@@ -21,7 +21,7 @@ const routes = [
   ["/communications", "이메일 템플릿"],
   ["/validation", "성과·파일럿"],
   ["/settings", "프로젝트 설정"],
-  ["/login", "팀 계정 로그인"],
+  ["/login", "로컬 저장 모드"],
 ];
 for (const [path, text] of routes) {
   const response = await fetch(base + path, {
@@ -31,9 +31,7 @@ for (const [path, text] of routes) {
   const html = await response.text();
   assert.ok(html.includes(text), `${path}: expected page content`);
   assert.ok(
-    html.includes("데모") ||
-      html.includes("연결") ||
-      html.includes("팀 계정 로그인"),
+    html.includes("데모") || html.includes("연결") || html.includes("로컬"),
     `${path}: data disclosure required`,
   );
   assert.ok(
@@ -41,7 +39,7 @@ for (const [path, text] of routes) {
     `${path}: no service key reference`,
   );
   if (path === "/dashboard") {
-    assert.ok(html.includes("실제 운영 데이터 저장소가 연결되지 않았습니다"));
+    assert.ok(html.includes("현재 로컬 운영 데이터를 읽지 못했습니다"));
     assert.ok(html.includes("확인 필요"));
     assert.ok(
       !html.includes("400,000원"),
@@ -82,35 +80,33 @@ for (const path of [
   console.log("PASS 404", path);
 }
 console.log("PASS root redirect; 21 pages; 5 missing/private paths");
-for (const path of [
-  "/api/workspace",
-  "/api/backup",
-  "/api/evidence/download?id=11111111-1111-4111-8111-111111111111",
-]) {
-  const response = await fetch(base + path);
-  assert.ok(
-    [401, 403, 503].includes(response.status),
-    `${path}: unauthenticated or unconfigured requests must fail closed`,
-  );
-  assert.ok(response.headers.get("cache-control")?.includes("no-store"));
-  const body = await response.json();
-  assert.ok(
-    !body.records && !body.url,
-    `${path}: no private data or signed URL`,
-  );
-  console.log("PASS protected", path);
-}
-const write = await fetch(base + "/api/records", {
+const workspaceResponse = await fetch(base + "/api/workspace");
+assert.equal(
+  workspaceResponse.status,
+  200,
+  "Local mode opens without credentials",
+);
+assert.ok(workspaceResponse.headers.get("cache-control")?.includes("no-store"));
+const workspace = await workspaceResponse.json();
+assert.equal(workspace.mode, "local");
+assert.equal(workspace.state, "connected");
+assert.ok(Array.isArray(workspace.records));
+const denied = await fetch(base + "/api/workspace", {
+  headers: { Origin: "https://evil.example" },
+});
+assert.equal(denied.status, 403);
+assert.ok(!(await denied.json()).records);
+const invalid = await fetch(base + "/api/records", {
   method: "POST",
   headers: { Origin: base, "Content-Type": "application/json" },
   body: "{}",
 });
-assert.ok(
-  [401, 403, 503].includes(write.status),
-  "Unauthenticated write must be denied",
-);
+assert.equal(invalid.status, 422);
 assert.equal(
   (await fetch(base + "/api/records", { method: "DELETE" })).status,
   405,
 );
-console.log("PASS unauthenticated write denied; DELETE unavailable");
+assert.equal((await fetch(base + "/.somssi-local/store.sqlite")).status, 404);
+console.log(
+  "PASS local access without account; cross-origin denied; invalid write denied; no DELETE; private DB not public",
+);

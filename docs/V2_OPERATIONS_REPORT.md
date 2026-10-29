@@ -1,3 +1,5 @@
+> Superseded by the local-storage request on 2026-10-30. Current setup: [LOCAL_STORAGE.md](LOCAL_STORAGE.md). This document records the previous cloud implementation.
+
 # SOMSSI V2 운영 기능 구현 보고
 
 작성일: 2026-10-30. 브랜치: feat/v2-operations-storage. 기존 기준 정비 커밋1684135 위에 구현했다. main 병합과 실서비스 배포는 수행하지 않는다.

@@ -1,6 +1,5 @@
 "use client";
 import { useState, type FormEvent } from "react";
-import Link from "next/link";
 import { Badge, Notice, Panel } from "@/components/ui";
 import {
   domains,
@@ -17,7 +16,7 @@ export function ConnectionNotice() {
   if (workspace.state === "connected")
     return (
       <p className="panel-note">
-        {workspace.project?.name} · {workspace.role} · 서버 저장·변경 이력 연결{" "}
+        {workspace.project?.name} · 로컬 저장 · 변경 이력 기록{" "}
         <button className="text-link" onClick={() => void refresh()}>
           새로고침
         </button>
@@ -26,14 +25,9 @@ export function ConnectionNotice() {
   return (
     <Notice>
       {workspace.state === "loading"
-        ? "저장소 연결을 확인하고 있습니다."
-        : (workspace.error ?? "저장소 연결 설정이 필요합니다.")}{" "}
-      {workspace.state === "signed_out" ? (
-        <Link href="/login" className="text-link">
-          로그인 →
-        </Link>
-      ) : null}{" "}
-      등록·수정은 연결과 권한 확인 후 사용할 수 있습니다.
+        ? "로컬 저장소를 열고 있습니다."
+        : (workspace.error ?? "로컬 저장 폴더를 확인해 주세요.")}{" "}
+      등록·수정은 로컬 저장소가 정상적으로 열린 후 사용할 수 있습니다.
     </Notice>
   );
 }
@@ -138,7 +132,7 @@ export function RecordManager({ kind }: { kind: string }) {
       if (!response.ok) throw new Error(data.error ?? "저장하지 못했습니다.");
       setCreating(false);
       setEditing(null);
-      setMessage("서버 저장과 감사 이력 기록을 완료했습니다.");
+      setMessage("로컬 저장과 감사 이력 기록을 완료했습니다.");
       await refresh();
     } catch (error) {
       setMessage(
@@ -361,7 +355,7 @@ export function RecordManager({ kind }: { kind: string }) {
               className="button button-primary"
               disabled={busy || !canWrite}
             >
-              {busy ? "저장 중…" : "서버에 저장"}
+              {busy ? "저장 중…" : "로컬에 저장"}
             </button>
             <button
               type="button"

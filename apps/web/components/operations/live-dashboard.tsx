@@ -62,15 +62,15 @@ export function LiveDashboard() {
         description="같은 운영 기록으로 실증·집행·증빙을 집계합니다."
         action={
           <Badge tone={connected ? "green" : "amber"}>
-            {connected ? "서버 데이터 연결" : "데이터 미연결"}
+            {connected ? "로컬 데이터" : "로컬 저장 확인 중"}
           </Badge>
         }
       />
       <ConnectionNotice />
       {!connected ? (
         <Notice>
-          현재 실제 운영 데이터 저장소가 연결되지 않았습니다. 0은 등록 기록이
-          없다는 의미이며 실제 실적·잔액을 확인한 값이 아닙니다.{" "}
+          현재 로컬 운영 데이터를 읽지 못했습니다. 0은 등록 기록이 없다는
+          의미이며 실제 실적·잔액을 확인한 값이 아닙니다.{" "}
           <Link className="text-link" href="/dashboard/demo">
             기존 데모 대시보드 보기 →
           </Link>
@@ -86,7 +86,7 @@ export function LiveDashboard() {
           <article className="metric-card" key={label}>
             <div className="metric-label">{label}</div>
             <strong>{value}</strong>
-            <span>{connected ? note : "운영 데이터 미연결"}</span>
+            <span>{connected ? note : "로컬 기록 확인 중"}</span>
           </article>
         ))}
       </div>

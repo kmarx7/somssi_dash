@@ -56,12 +56,12 @@ export function Shell({ children }: { children: ReactNode }) {
   const { workspace } = useWorkspace();
   const connected = workspace.state === "connected";
   const connectionLabel = connected
-    ? "서버 저장 연결"
+    ? "로컬 저장"
     : workspace.state === "signed_out"
-      ? "로그인 필요"
+      ? "로컬 저장 확인"
       : workspace.state === "loading"
-        ? "연결 확인 중"
-        : "데이터 미연결";
+        ? "로컬 저장 확인 중"
+        : "로컬 저장 오류";
   const title =
     allItems.find(
       (item) => path === item.href || path.startsWith(item.href + "/"),
@@ -89,8 +89,8 @@ export function Shell({ children }: { children: ReactNode }) {
           <div className="topbar-right">
             <Badge tone="amber">{demo ? "데모" : connectionLabel}</Badge>
             <span className="program-name">모두의창업 · 2라운드</span>
-            <Link href="/login" className="text-link">
-              {connected ? "계정" : "로그인"}
+            <Link href="/settings" className="text-link">
+              저장 위치
             </Link>
             <span className="avatar" aria-label="프로젝트">
               S
@@ -108,8 +108,8 @@ export function Shell({ children }: { children: ReactNode }) {
               {demo
                 ? "화면 시연용이며 저장되지 않습니다."
                 : connected
-                  ? "운영 기록과 서버 변경 이력을 함께 관리합니다."
-                  : "로그인·저장소 연결 후 실제 기록을 저장할 수 있습니다."}
+                  ? "이 컴퓨터에 운영 기록과 감사 이력을 저장합니다. 자동 클라우드 동기화는 없습니다."
+                  : "로컬 저장소 상태를 확인해 주세요. 계정·클라우드 설정은 필요하지 않습니다."}
             </span>
             <Link href="/settings">
               구현 범위 확인 <span aria-hidden="true">→</span>

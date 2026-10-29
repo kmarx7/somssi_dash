@@ -106,3 +106,9 @@ M2 게이트: 역할별 CRUD, 비멤버/탈퇴자/타 프로젝트 접근, 위�
 역할: owner/admin 전체 운영 수정·정산 검토·감사/백업, editor 자기 생성 기록 수정·거래 기록·자기 원거래 정정, viewer 조회. 결제 완료/지출/증빙은 불변. 증빙 원본은 viewer에게 거부하고 editor는 자기 업로드만, owner/admin은 프로젝트 내 파일을 접근한다. 소속 없는 프로젝트는 읽기/쓰기 모두 차단한다. 멤버십 변경은 관리자 SQL로만 수행하며 감사 트리거를 남긴다.
 
 API → JWT 검증(getUser) → 멤버십 → Zod → 저장 RPC → SQL 검증/관계/버전 → 기록+감사 원자 커밋 → 같은 기록 조회 → Dashboard projection. 디스크 재시작 영속성·다른 프로젝트 FK·버전 충돌·권한·정정 합계는 실제 PostgreSQL 테스트로 확인한다. 실제 클라우드 설치/RLS advisory·Auth·Storage 검증은 운영 프로젝트가 지정된 뒤 필요하다.
+
+## 현재 저장소: 로컬 SQLite (사용자 변경 요청, 2026-10-30)
+
+앞 절의 Supabase 운영 모델은 과거 구현 기록이다. 현재 런타임은 node:sqlite DatabaseSync를 사용하며 프로젝트 루트 `.somssi-local/store.sqlite`와 evidence 폴더에 저장한다. 프로젝트/로컬 사용자/도메인 기록/동일 프로젝트 참조/감사 테이블, WAL과 FK·버전 충돌·불변 원장·정정 합계 검사를 적용한다. 저장과 SQL 감사 트리거는 같은 BEGIN IMMEDIATE 트랜잭션에서 완료한다.
+
+Auth/RLS/클라우드 키를 요구하지 않는다. 로컬 사용자는 감사용 설치 식별값이며 인증/팀별 권한을 뜻하지 않는다. 원격 DB/기존 브라우저 데이터는 자동 이관·덮어쓰기하지 않는다. 전체 백업은 native SQLite snapshot과 증빙 파일/해시 manifest를 포함하며 새 폴더 복구로 원본을 보존한다. 현재 연결·복구 지침과 제한은 LOCAL_STORAGE.md가 우선한다.

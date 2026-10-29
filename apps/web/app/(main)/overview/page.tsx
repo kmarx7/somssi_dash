@@ -104,16 +104,16 @@ export default function Overview() {
             <li>
               <span>02</span>
               <div>
-                <strong>데이터·로그인 연결</strong>
-                <p>인증·권한·업무·실증·정산 기록과 감사 이력</p>
+                <strong>로컬 데이터 저장</strong>
+                <p>계정 없이 이 컴퓨터에 업무·실증·정산 기록 저장</p>
               </div>
-              <Badge>구현 · 운영 연결 대기</Badge>
+              <Badge>바로 사용</Badge>
             </li>
             <li>
               <span>03–06</span>
               <div>
                 <strong>앱 통합부터 정산·출력까지</strong>
-                <p>실증·집행·증빙 구현, 공식 출력·복원·배포는 남음</p>
+                <p>로컬 백업·복구 구현, 공식 문서 출력은 준비 중</p>
               </div>
               <Badge>부분 구현</Badge>
             </li>

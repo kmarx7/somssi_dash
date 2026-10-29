@@ -1291,3 +1291,4 @@ tbody tr:last-child td {
 .field-wide { grid-column: 1 / -1; }
 .operation-legacy { margin-bottom: 24px; }
 @media(max-width:800px) { .operation-fields { grid-template-columns: 1fr; } .operation-form { padding: 14px; } }
+.local-path { overflow-wrap: anywhere; white-space: normal; font-size: 11px; max-width: 400px; }

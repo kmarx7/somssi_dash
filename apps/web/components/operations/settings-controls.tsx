@@ -1,19 +1,19 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { Panel } from "@/components/ui";
 import { useWorkspace } from "./workspace";
 import { ConnectionNotice } from "./record-manager";
 export function SettingsControls() {
-  const { workspace, refresh } = useWorkspace();
-  const router = useRouter();
+  const { workspace } = useWorkspace();
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
-  async function backup() {
+  async function backup(files: boolean) {
     setBusy(true);
     setMessage("");
     try {
-      const response = await fetch("/api/backup", { cache: "no-store" });
+      const response = await fetch(`/api/backup${files ? "?files=1" : ""}`, {
+        cache: "no-store",
+      });
       if (!response.ok) {
         const result = await response.json();
         throw new Error(result.error);
@@ -22,11 +22,15 @@ export function SettingsControls() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `SOMSSI-private-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      a.download = files
+        ? `SOMSSI-${new Date().toISOString().slice(0, 10)}.somssi-backup.gz`
+        : `SOMSSI-local-records-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       setMessage(
-        "기록·감사 이력 백업을 내려받았습니다. 증빙 파일 원본은 별도 백업이 필요합니다.",
+        files
+          ? "DB·감사 이력·증빙 원본을 포함한 전체 백업을 내려받았습니다."
+          : "기록·감사 이력 JSON을 내려받았습니다. 증빙 원본은 전체 백업을 사용하세요.",
       );
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "백업 실패");
@@ -34,48 +38,47 @@ export function SettingsControls() {
       setBusy(false);
     }
   }
-  async function logout() {
-    setBusy(true);
-    try {
-      const r = await fetch("/api/auth/logout", { method: "POST" });
-      const result = await r.json();
-      if (!r.ok) throw new Error(result.error);
-      await refresh();
-      router.push("/login");
-    } catch (e) {
-      setMessage(e instanceof Error ? e.message : "로그아웃 실패");
-    } finally {
-      setBusy(false);
-    }
-  }
   return (
     <>
       <ConnectionNotice />
-      <Panel title="계정·백업">
+      <Panel title="로컬 저장 위치·백업">
+        <dl className="budget-lines">
+          <div>
+            <dt>저장 방식</dt>
+            <dd>이 컴퓨터 · SQLite</dd>
+          </div>
+          <div>
+            <dt>운영 폴더</dt>
+            <dd className="local-path">
+              {workspace.storage?.directory ?? "확인 중"}
+            </dd>
+          </div>
+          <div>
+            <dt>사용자</dt>
+            <dd>이 컴퓨터의 로컬 사용자</dd>
+          </div>
+        </dl>
         <div className="task-controls">
           <button
-            className="button"
-            disabled={
-              workspace.state !== "connected" ||
-              busy ||
-              !["owner", "admin"].includes(workspace.role ?? "")
-            }
-            onClick={() => void backup()}
+            className="button button-primary"
+            disabled={workspace.state !== "connected" || busy}
+            onClick={() => void backup(true)}
           >
-            운영 기록·감사 이력 JSON 백업
+            {busy ? "백업 준비 중…" : "증빙 포함 전체 백업"}
           </button>
           <button
             className="button"
             disabled={workspace.state !== "connected" || busy}
-            onClick={() => void logout()}
+            onClick={() => void backup(false)}
           >
-            로그아웃
+            기록 JSON 내보내기
           </button>
         </div>
         <p className="panel-note">
-          백업에는 실제 입력값과 변경 이력이 포함됩니다. Git/public 외부에
-          안전하게 보관하세요. 증빙 파일 바이너리는 포함하지 않습니다. 자동
-          복원·기존 기록 덮어쓰기는 제공하지 않습니다.
+          계정·클라우드 연결 없이 이 컴퓨터에 저장합니다. 백업은 압축 파일이며
+          암호화되지 않습니다. Git/public 외부에 안전하게 보관하세요. 전체
+          백업은 새 폴더에 복구할 수 있고, 기존 운영 폴더를 덮어쓰지 않습니다.
+          다른 컴퓨터와 자동 동기화되지 않습니다.
         </p>
         {message ? <p role="status">{message}</p> : null}
       </Panel>

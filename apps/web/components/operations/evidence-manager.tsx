@@ -37,9 +37,18 @@ export function EvidenceManager() {
         `/api/evidence/download?id=${encodeURIComponent(id)}`,
         { cache: "no-store" },
       );
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.error);
-      window.location.assign(result.url);
+      if (!response.ok) {
+        const result = await response.json();
+        throw new Error(result.error);
+      }
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const record = workspace.records.find((r) => r.id === id);
+      a.href = url;
+      a.download = String(record?.payload.originalName ?? "evidence");
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "다운로드 실패");
     }
@@ -91,9 +100,8 @@ export function EvidenceManager() {
           </button>
           <p className="panel-note">
             서명·연락처 등 필요한 최소 정보만 업로드하세요. 동영상은 현재
-            지원하지 않습니다. 편집자는 본인 업로드 파일, 관리자는 프로젝트
-            파일을 내려받을 수 있습니다. 검증 상태는 업로드만으로 확정되지
-            않습니다.
+            지원하지 않습니다. 파일은 이 컴퓨터의 비공개 저장 폴더에 보관됩니다.
+            검증 상태는 업로드만으로 확정되지 않습니다.
           </p>
         </form>
         {message ? (
@@ -130,7 +138,8 @@ export function EvidenceManager() {
         </ul>
         <p className="panel-note">
           업로드 후 업무·회차·지출 검토 등의 ‘연결 증빙’에서 선택해 주세요.
-          다운로드 링크는 권한 확인 후 60초 동안만 유효합니다.
+          파일은 로컬 앱에서만 내려받으며 내려받기 전 크기와 원본 해시를
+          확인합니다.
         </p>
       </Panel>
     </>

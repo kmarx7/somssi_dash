@@ -8,3 +8,4 @@
 - 지출 삭제 로직을 만들지 않는다. 거래 정정과 모든 변경은 서버 감사 이력이 필요하다.
 - npm run lint, npm run typecheck, npm run build, npm run test:smoke를 실행하고 완료 범위를 docs/TEST_PLAN.md에 기록한다.
 - Next.js API 변경은 설치 패키지 node_modules/next/dist/docs 및 공식 문서에서 확인한다.
+- 사용자 변경 요청(2026-10-30): 실운영 저장은 Supabase 대신 이 컴퓨터의 서버 측 SQLite와 비공개 로컬 파일을 사용한다. 클라우드 계정·키·로그인 없이 127.0.0.1에서 실행하며, 원 아키텍처의 저장소 선택은 이 지시로 대체한다. 로컬 운영 DB/증빙/백업은 Git/public에 포함하지 않는다.

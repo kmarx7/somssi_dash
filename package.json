@@ -15,10 +15,11 @@
     "verify:originals": "python3 scripts/verify-originals.py",
     "test:unit": "node --experimental-strip-types --test tests/*.test.mjs",
     "test:integration": "node --experimental-strip-types tests/operations-integration.mjs",
-    "db:rules:check": "node --experimental-strip-types scripts/build-db-rules.mjs --check"
+    "db:rules:check": "node --experimental-strip-types scripts/build-db-rules.mjs --check",
+    "local:restore": "node --experimental-strip-types scripts/restore-local.mjs"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.16.0"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.13",

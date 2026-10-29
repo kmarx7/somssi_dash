@@ -1,34 +1,62 @@
+import { open } from "node:fs/promises";
+import { constants } from "node:fs";
+import { createHash } from "node:crypto";
 import { z } from "zod";
-import { authorize } from "@/lib/supabase/server";
+import {
+  localStore,
+  localJson,
+  localFailure,
+  rejectLocalRequest,
+} from "@/lib/local/server";
+export const runtime = "nodejs";
 export async function GET(request: Request) {
-  const auth = await authorize();
-  if ("response" in auth) return auth.response;
+  const denied = rejectLocalRequest(request);
+  if (denied) return denied;
   const id = new URL(request.url).searchParams.get("id");
   if (!z.uuid().safeParse(id).success)
-    return auth.respond({ error: "유효한 증빙 ID가 필요합니다." }, 422);
-  const record = await auth.client
-    .from("somssi_records")
-    .select("payload,created_by")
-    .eq("id", id!)
-    .eq("project_id", auth.projectId)
-    .eq("kind", "evidence")
-    .maybeSingle();
-  if (record.error)
-    return auth.respond({ error: "증빙을 조회할 수 없습니다." }, 503);
-  if (
-    !record.data ||
-    auth.role === "viewer" ||
-    (auth.role === "editor" && record.data.created_by !== auth.userId)
-  )
-    return auth.respond({ error: "증빙 파일 접근 권한이 없습니다." }, 403);
-  const payload = record.data.payload;
-  const path = String(payload.storagePath);
-  if (!path.startsWith(`${auth.projectId}/`))
-    return auth.respond({ error: "증빙 경로가 일치하지 않습니다." }, 403);
-  const signed = await auth.client.storage
-    .from("somssi-evidence")
-    .createSignedUrl(path, 60, { download: String(payload.originalName) });
-  if (signed.error)
-    return auth.respond({ error: "파일 다운로드를 준비하지 못했습니다." }, 503);
-  return auth.respond({ url: signed.data.signedUrl, expiresIn: 60 });
+    return localJson({ error: "유효한 증빙 ID가 필요합니다." }, 422);
+  try {
+    const store = localStore();
+    const record = store.get(id!);
+    if (!record || record.kind !== "evidence")
+      return localJson({ error: "증빙 파일이 없습니다." }, 404);
+    const handle = await open(
+      store.evidencePath(record),
+      constants.O_RDONLY | constants.O_NOFOLLOW,
+    );
+    let bytes: Buffer;
+    try {
+      const stat = await handle.stat();
+      if (
+        !stat.isFile() ||
+        stat.size !== record.payload.size ||
+        stat.size > 10485760
+      )
+        return localJson({ error: "증빙 파일 크기가 일치하지 않습니다." }, 409);
+      bytes = await handle.readFile();
+    } finally {
+      await handle.close();
+    }
+    if (
+      createHash("sha256").update(bytes).digest("hex") !== record.payload.sha256
+    )
+      return localJson(
+        {
+          error:
+            "증빙 파일의 원본 해시가 일치하지 않습니다. 파일을 확인해 주세요.",
+        },
+        409,
+      );
+    return new Response(new Uint8Array(bytes), {
+      headers: {
+        "Content-Type": "application/octet-stream",
+        "Content-Disposition": `attachment; filename="evidence-${record.id}"; filename*=UTF-8''${encodeURIComponent(String(record.payload.originalName))}`,
+        "Content-Length": String(bytes.length),
+        "Cache-Control": "private, no-store",
+        "X-Content-Type-Options": "nosniff",
+      },
+    });
+  } catch (error) {
+    return localFailure(error);
+  }
 }

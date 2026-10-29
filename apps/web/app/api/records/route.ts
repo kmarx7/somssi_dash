@@ -1,14 +1,16 @@
-import { authorize } from "@/lib/supabase/server";
-import { checkMutation, jsonBody, dbError } from "@/lib/operations/http";
-import { validatePayload, writeSchema } from "@/lib/operations/validation";
+import {
+  localStore,
+  localJson,
+  localFailure,
+  rejectLocalRequest,
+} from "@/lib/local/server";
+import { jsonBody } from "@/lib/operations/http";
+import { writeSchema, validatePayload } from "@/lib/operations/validation";
 import { domains } from "@/lib/operations/domains";
+export const runtime = "nodejs";
 export async function POST(request: Request) {
-  const auth = await authorize();
-  if ("response" in auth) return auth.response;
-  const csrf = checkMutation(request);
-  if (csrf) return auth.respond({ error: csrf }, 403);
-  if (auth.role === "viewer")
-    return auth.respond({ error: "조회 전용 계정입니다." }, 403);
+  const denied = rejectLocalRequest(request);
+  if (denied) return denied;
   let input;
   let payload;
   try {
@@ -17,7 +19,7 @@ export async function POST(request: Request) {
     if (domains[input.kind].uploadOnly)
       throw new Error("증빙은 업로드 화면에서 등록해 주세요.");
   } catch (error) {
-    return auth.respond(
+    return localJson(
       {
         error:
           error instanceof Error && !("issues" in error)
@@ -27,19 +29,19 @@ export async function POST(request: Request) {
       422,
     );
   }
-  const { data, error } = await auth.client.rpc("somssi_write_record", {
-    p_project_id: auth.projectId,
-    p_id: input.id,
-    p_kind: input.kind,
-    p_payload: payload,
-    p_expected_version: input.expectedVersion,
-  });
-  if (error) {
-    const failure = dbError(error.code);
-    return auth.respond({ error: failure.error }, failure.status);
+  try {
+    return localJson(
+      {
+        record: localStore().write(
+          input.kind,
+          input.id,
+          payload,
+          input.expectedVersion,
+        ),
+      },
+      input.expectedVersion === 0 ? 201 : 200,
+    );
+  } catch (error) {
+    return localFailure(error);
   }
-  return auth.respond(
-    { record: data },
-    input.expectedVersion === 0 ? 201 : 200,
-  );
 }

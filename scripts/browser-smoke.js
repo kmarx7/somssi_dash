@@ -35,7 +35,7 @@
     ["/communications", "이메일 템플릿"],
     ["/validation", "성과·파일럿"],
     ["/settings", "프로젝트 설정"],
-    ["/login", "팀 계정 로그인"],
+    ["/login", "로컬 저장 모드"],
   ];
   for (const [path, text] of routes) {
     const response = await fetch(base + path, {
@@ -45,9 +45,7 @@
     const html = await response.text();
     assert.ok(html.includes(text), `${path}: expected page content`);
     assert.ok(
-      html.includes("데모") ||
-        html.includes("연결") ||
-        html.includes("팀 계정 로그인"),
+      html.includes("데모") || html.includes("연결") || html.includes("로컬"),
       `${path}: data disclosure required`,
     );
     assert.ok(

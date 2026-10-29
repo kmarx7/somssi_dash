@@ -1,3 +1,5 @@
+> Superseded by the local-storage request on 2026-10-30. Current setup: [LOCAL_STORAGE.md](LOCAL_STORAGE.md). This document records the previous cloud implementation.
+
 # V2 운영 저장소 연결
 
 기준일: 2026-10-30. 이번 코드는 기존 Next.js 앱과 Supabase 설계를 사용한다. 실제 사용할 Supabase 프로젝트는 아직 지정되지 않았으며 원격 스키마/사용자/데이터를 변경하지 않았다. 연결 목록의 비활성 `somssi`가 별도 체험 서비스용인지 확인되지 않았으므로 자동 재개·혼용하지 않는다.
