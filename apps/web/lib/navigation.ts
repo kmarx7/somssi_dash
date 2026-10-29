@@ -11,6 +11,20 @@ export const navigation: { group: string; items: NavItem[] }[] = [
     group: "PROJECT",
     items: [
       {
+        href: "/business-plan",
+        title: "사업계획·가설",
+        icon: "document",
+        phase: "V2",
+        description: "Q1–Q4 기준과 자료 확보 상태를 확인합니다.",
+      },
+      {
+        href: "/products",
+        title: "가야금 상품",
+        icon: "activity",
+        phase: "V2",
+        description: "상품 운영 가설과 미확인 가격을 구분합니다.",
+      },
+      {
         href: "/overview",
         title: "사업 개요",
         icon: "overview",

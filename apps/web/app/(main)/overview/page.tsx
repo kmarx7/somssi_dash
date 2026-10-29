@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Badge, PageHeader, Panel } from "@/components/ui";
 import { Icon } from "@/components/icon";
-import { demoProject, won } from "@/data/demo/project";
+import { v2Reference } from "@/data/reference/v2";
 export const metadata = { title: "사업 개요" };
 const flow = [
   ["01", "일정·활동", "무엇을, 언제 실행할지 계획"],
@@ -28,7 +28,7 @@ export default function Overview() {
           <h2>
             SOMSSI <span>2R Control Center</span>
           </h2>
-          <p>팀의 실행 기록이 증빙과 제출서류로 이어지도록.</p>
+          <p>{v2Reference.vision}</p>
           <div className="banner-tags">
             <span>프로젝트 운영</span>
             <span>예산·정산</span>
@@ -36,8 +36,8 @@ export default function Overview() {
           </div>
         </div>
         <div className="banner-budget">
-          <span>초기 프로젝트 예산 · 데모</span>
-          <strong>{won(demoProject.totalBudget)}</strong>
+          <span>1R 활동자금 · 기본 배정 계획</span>
+          <strong>2,000,000원</strong>
           <small>편성 시뮬레이션과 실제 집행은 구분합니다.</small>
         </div>
       </section>
@@ -90,14 +90,14 @@ export default function Overview() {
         </Panel>
         <Panel
           title="현재 개발 단계"
-          meta={<Badge tone="blue">M1 진행 범위</Badge>}
+          meta={<Badge tone="blue">V2 기준 정비</Badge>}
         >
           <ol className="phase-list">
             <li className="phase-active">
               <span>01</span>
               <div>
                 <strong>웹앱 프론트엔드 골격</strong>
-                <p>메뉴 이동 · 개요 · 대시보드 · 데모 업무 필터</p>
+                <p>기존 메뉴·업무 필터 보존 · 기준자료·상품 가설 추가</p>
               </div>
               <Badge tone="blue">현재</Badge>
             </li>

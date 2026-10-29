@@ -51,6 +51,7 @@ function Brand() {
 }
 export function Shell({ children }: { children: ReactNode }) {
   const path = usePathname();
+  const demo = path === "/tasks" || path === "/dashboard/demo";
   const title =
     allItems.find(
       (item) => path === item.href || path.startsWith(item.href + "/"),
@@ -64,8 +65,8 @@ export function Shell({ children }: { children: ReactNode }) {
         <Brand />
         <Navigation />
         <div className="sidebar-footer">
-          <span className="status-dot" /> M1 프론트엔드 골격
-          <small>데모 전용 · 서버 미연결</small>
+          <span className="status-dot" /> V2 기준 정비
+          <small>읽기 전용 · 서버 미연결</small>
         </div>
       </aside>
       <div className="workspace">
@@ -76,7 +77,7 @@ export function Shell({ children }: { children: ReactNode }) {
             <strong>{title}</strong>
           </div>
           <div className="topbar-right">
-            <Badge tone="amber">데모</Badge>
+            <Badge tone="amber">{demo ? "데모" : "데이터 미연결"}</Badge>
             <span className="program-name">모두의창업 · 2라운드</span>
             <span className="avatar" aria-label="데모 프로젝트">
               S
@@ -90,7 +91,10 @@ export function Shell({ children }: { children: ReactNode }) {
         <main id="main-content" className="content" tabIndex={-1}>
           <div className="demo-strip">
             <span>
-              <strong>샘플 데이터</strong> · 화면 시연용이며 저장되지 않습니다.
+              <strong>{demo ? "샘플 데이터" : "운영 데이터 미연결"}</strong> ·{" "}
+              {demo
+                ? "화면 시연용이며 저장되지 않습니다."
+                : "실제 기록의 등록·수정·저장은 아직 지원하지 않습니다."}
             </span>
             <Link href="/settings">
               구현 범위 확인 <span aria-hidden="true">→</span>
@@ -99,7 +103,7 @@ export function Shell({ children }: { children: ReactNode }) {
           {children}
           <footer className="content-footer">
             <span>SOMSSI 2R CONTROL CENTER</span>
-            <span>M1 · 데모 / 실제 운영 데이터 없음</span>
+            <span>V2 기준 정비 · 운영 데이터 미연결</span>
           </footer>
         </main>
       </div>

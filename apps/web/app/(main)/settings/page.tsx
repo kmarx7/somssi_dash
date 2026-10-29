@@ -27,6 +27,19 @@ export default function Settings() {
         현재는 공개 데모 화면입니다. 실제 개인정보·영수증·서명을 입력하거나
         보관하는 기능이 없습니다.
       </Notice>
+      <Panel
+        title="V2 기준 정비 · 현재 범위"
+        meta={<Badge tone="blue">1단계 / 2단계 일부</Badge>}
+      >
+        <p className="muted">
+          현행 분석·비전·Q1–Q4·상품 가설·원본 확보 상태를 정리했습니다. 기본
+          대시보드는 운영 데이터 미연결 상태이며, 기존 데모는 별도 경로로
+          보존합니다. 실제 등록·저장·공식 출력은 아직 구현되지 않았습니다.
+        </p>
+        <Link href="/business-plan" className="text-link">
+          기준자료 확인 →
+        </Link>
+      </Panel>
       <Panel title="단계별 구현 현황" meta={<Badge tone="blue">M1</Badge>}>
         <div className="table-scroll">
           <table>

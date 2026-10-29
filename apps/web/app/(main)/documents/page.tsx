@@ -1,4 +1,5 @@
 import { Badge, Notice, PageHeader, Panel } from "@/components/ui";
+import { sourceRegistry } from "@/data/reference/v2";
 import { Icon } from "@/components/icon";
 export const metadata = { title: "공식 문서 출력" };
 const templates = [
@@ -46,6 +47,26 @@ export default function Documents() {
         공식 원본 5종의 파일·해시·구조 조사를 마쳤습니다. 서버 등록·데이터
         주입·사진·서명 삽입·렌더 비교·다운로드는 아직 구현되지 않았습니다.
       </Notice>
+      <Panel
+        title="2R 사업계획서·활동보고서 원본 미확보"
+        meta={<Badge tone="amber">생성 불가</Badge>}
+      >
+        <p className="muted">
+          최종개정 사업계획서, 공식 사업계획서·활동보고서 HWP/HWPX가 필요합니다.
+          활동비 증빙 DOCX는 2R 활동보고서 양식을 대신하지 않습니다. DOCX
+          변환·10/5쪽 제한·맑은고딕 12pt/표 10pt는 원본 확보 후 렌더링으로
+          검증합니다.
+        </p>
+        <ul className="planned-list">
+          {sourceRegistry
+            .filter((s) =>
+              ["final-plan", "official-plan", "official-report"].includes(s.id),
+            )
+            .map((s) => (
+              <li key={s.id}>{s.title} · 미확보</li>
+            ))}
+        </ul>
+      </Panel>
       <div className="documents-grid">
         {templates.map(([title, ext, desc, file]) => (
           <article className="document-card" key={file}>

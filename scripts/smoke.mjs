@@ -3,6 +3,9 @@ const base = process.env.SMOKE_BASE_URL || "http://127.0.0.1:3100";
 const routes = [
   ["/overview", "실행부터 제출까지"],
   ["/dashboard", "오늘의 실행"],
+  ["/dashboard/demo", "오늘의 실행"],
+  ["/business-plan", "사업계획·가설"],
+  ["/products", "가야금 상품"],
   ["/schedule", "실행 일정"],
   ["/activities", "사업 활동"],
   ["/tasks", "업무·마일스톤"],
@@ -25,11 +28,26 @@ for (const [path, text] of routes) {
   assert.equal(response.status, 200, path);
   const html = await response.text();
   assert.ok(html.includes(text), `${path}: expected page content`);
-  assert.ok(html.includes("데모"), `${path}: demo disclosure required`);
+  assert.ok(
+    html.includes("데모") || html.includes("데이터 미연결"),
+    `${path}: data disclosure required`,
+  );
   assert.ok(
     !html.includes("service_role"),
     `${path}: no service key reference`,
   );
+  if (path === "/dashboard") {
+    assert.ok(html.includes("실제 운영 데이터 저장소가 연결되지 않았습니다"));
+    assert.ok(html.includes("확인 필요"));
+    assert.ok(
+      !html.includes("400,000원"),
+      "Synthetic expenses must not appear in operational dashboard",
+    );
+    assert.ok(html.includes("/dashboard/demo"));
+  }
+  if (path === "/dashboard/demo") assert.ok(html.includes("400,000원"));
+  if (path === "/products")
+    assert.ok(html.includes("최종개정 사업계획서가 없어"));
   if (path === "/budget/allocate") {
     assert.ok(
       html.includes("https://coruscating-duckanoo-f67d1c.netlify.app/"),
@@ -59,4 +77,4 @@ for (const path of [
   assert.equal(response.status, 404, path);
   console.log("PASS 404", path);
 }
-console.log("PASS root redirect; 16 pages; 5 missing/private paths");
+console.log("PASS root redirect; 19 pages; 5 missing/private paths");

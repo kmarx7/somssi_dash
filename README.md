@@ -1,6 +1,6 @@
 # SOMSSI 2R Control Center
 
-모두의창업 SOMSSI 팀 운영 통합 시스템의 **M1 프론트엔드 데모**입니다. 실제 계정·지출·파일을 저장하지 않습니다.
+모두의창업 SOMSSI 팀 운영 통합 시스템의 **V2 현행 분석·기준 정비 단계**입니다. 실제 계정·지출·파일을 저장하지 않습니다. 기존 M1 데모 대시보드는 `/dashboard/demo`, 업무 데모는 `/tasks`에서 보존합니다. 기본 `/dashboard`는 실제 데이터 미연결 상태를 표시합니다.
 
 ## 실행
 
@@ -20,13 +20,17 @@ npm run build
 npm run start
 # 실행 중인 서버를 대상으로 별도 터미널에서
 npm run test:smoke
+npm run test:unit
 # 원본 5개가 로컬 original-templates에 있을 때
 npm run verify:originals
 ```
 
 ## 구현 범위
 
-- Next.js App Router / React / TypeScript / Tailwind 기반 공통 레이아웃과 명세의 16개 화면.
+- Next.js App Router / React / TypeScript / Tailwind 기반 기존 레이아웃 유지, 19개 사용자 화면.
+- `/business-plan`: Q1–Q4·비전·성장 단계·원본 확보 목록. `/products`: 60분/120분 상품 가설, 미확인 가격 표시.
+- 제출시각(2026-11-23 14:00 KST) 카운트다운, 데모와 운영 현황 분리, 출처/확인일·자금 구분.
+- 인증 저장소 도입 전 공통 타입 및 순수 집계/공헌이익 계산 함수. 실제 CRUD/DB 연동은 미구현.
 - 개요·대시보드, 데모 업무 검색/상태 필터/빈 결과/필터 초기화.
 - 데스크톱 사이드바·모바일 접기 메뉴·키보드 초점·본문 바로가기.
 - 기존 일정·예산·회의록·이메일 앱 외부 연결.
@@ -42,6 +46,10 @@ npm run verify:originals
 
 ## 문서
 
+- [V2 현행 분석](docs/CURRENT_SYSTEM_ANALYSIS.md)
+- [V2 개선 계획·단계별 상태](docs/V2_IMPLEMENTATION_PLAN.md)
+- [V2 기준값과 미확인 목록](docs/V2_DATA_RECONCILIATION.md)
+- [이번 단계 변경 보고](docs/V2_CHANGE_REPORT.md)
 - [원 아키텍처](docs/SOMSSI_Codex_System_Architecture.md)
 - [조사 결과·확정 요구사항·미확정 항목](docs/REQUIREMENTS.md)
 - [데이터 흐름·ERD·금액 의미·권한 설계](docs/DATA_MODEL.md)
@@ -50,4 +58,4 @@ npm run verify:originals
 - [디자인 기준](docs/DESIGN_SYSTEM.md)
 - [테스트 결과 및 다음 검증](docs/TEST_PLAN.md)
 
-기능별 `feat/<기능명>` 브랜치로 분리합니다. 이번 M1은 `feat/m1-web-shell`이며 main 자동 병합은 하지 않습니다.
+기능별 `feat/<기능명>` 브랜치로 분리합니다. 이번 V2 기준 정비는 `feat/v2-analysis-baseline`이며 main 자동 병합은 하지 않습니다.

@@ -17,6 +17,9 @@
   const routes = [
     ["/overview", "실행부터 제출까지"],
     ["/dashboard", "오늘의 실행"],
+    ["/dashboard/demo", "오늘의 실행"],
+    ["/business-plan", "사업계획·가설"],
+    ["/products", "가야금 상품"],
     ["/schedule", "실행 일정"],
     ["/activities", "사업 활동"],
     ["/tasks", "업무·마일스톤"],
@@ -39,7 +42,10 @@
     assert.equal(response.status, 200, path);
     const html = await response.text();
     assert.ok(html.includes(text), `${path}: expected page content`);
-    assert.ok(html.includes("데모"), `${path}: demo disclosure required`);
+    assert.ok(
+      html.includes("데모") || html.includes("데이터 미연결"),
+      `${path}: data disclosure required`,
+    );
     assert.ok(
       !html.includes("service_role"),
       `${path}: no service key reference`,
@@ -72,7 +78,7 @@
     assert.equal(response.status, 404, path);
     console.log("PASS 404", path);
   }
-  console.log("PASS root redirect; 16 pages; 5 missing/private paths");
+  console.log("PASS root redirect; 19 pages; 5 missing/private paths");
 
   return results;
 })();

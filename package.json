@@ -12,7 +12,8 @@
     "lint": "npm run lint --workspace @somssi/web",
     "typecheck": "npm run typecheck --workspace @somssi/web",
     "test:smoke": "node scripts/smoke.mjs",
-    "verify:originals": "python3 scripts/verify-originals.py"
+    "verify:originals": "python3 scripts/verify-originals.py",
+    "test:unit": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "engines": {
     "node": ">=22.0.0"
