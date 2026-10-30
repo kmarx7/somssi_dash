@@ -75,6 +75,73 @@ const time = (key: string, label: string, required = true): Field => ({
 const funds = ["1r", "ai", "future"] as const;
 const title = text("title", "이름·제목");
 export const domains: Record<string, Domain> = {
+  documentDrafts: {
+    label: "양식 입력·검토 초안",
+    fields: [
+      title,
+      select("template", "원본 양식", [
+        "meeting",
+        "activity",
+        "purchase",
+        "details",
+      ]),
+      select("state", "초안 상태", ["작성 중", "보관"]),
+      ref("calendarEventId", "근거 일정", "calendarEvents"),
+      date("date", "회의·활동 날짜", false),
+      text("startTime", "시작 시간 HH:mm", false),
+      text("endTime", "종료 시간 HH:mm", false),
+      text("venue", "장소", false),
+      area("purpose", "목적", false),
+      area("content", "내용·논의 (미확인 내용은 명시)", false),
+      area("decisions", "결정사항", false),
+      area("attendees", "실제 참석자·역할", false),
+      select("receiptStatus", "영수증 발급 확인", [
+        "확인 필요",
+        "발급 확인",
+        "미발급",
+      ]),
+      {
+        key: "expenseIds",
+        label: "연결 실제 지출",
+        type: "refs",
+        ref: "expenses",
+      },
+      {
+        key: "photoIds",
+        label: "사진 증빙 (별도첨부·Word 삽입은 수동)",
+        type: "refs",
+        ref: "evidence",
+      },
+      ref("estimateId", "거래명세·견적 (결제와 구분)", "estimates"),
+      text("applicant", "신청자", false),
+      text("institution", "기관", false),
+      date("birthDate", "생년월일", false),
+      text("phone", "연락처", false),
+      area("idea", "아이디어", false),
+      text("itemName", "물품명", false),
+      area("rentalReason", "실제 임차 불가 사유", false),
+    ],
+  },
+  documentGenerations: {
+    label: "문서 생성 이력",
+    immutable: true,
+    uploadOnly: true,
+    fields: [
+      title,
+      text("jobId", "생성 ID"),
+      {
+        key: "draftIds",
+        label: "입력 초안",
+        type: "refs",
+        ref: "documentDrafts",
+        required: true,
+      },
+      select("status", "검증 상태", ["검토 필요", "생성 실패"]),
+      text("snapshotHash", "데이터 스냅샷 SHA-256"),
+      text("manifestHash", "결과 목록 SHA-256"),
+      area("checks", "구조·렌더 확인 및 미입력 항목", true),
+    ],
+  },
   calendarEvents: {
     label: "상세 일정",
     fields: [

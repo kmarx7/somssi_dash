@@ -1,3 +1,4 @@
+import { DocumentCenter } from "@/components/documents/document-center";
 import { Badge, Notice, PageHeader, Panel } from "@/components/ui";
 import { sourceRegistry } from "@/data/reference/v2";
 import { Icon } from "@/components/icon";
@@ -40,12 +41,13 @@ export default function Documents() {
       <PageHeader
         eyebrow="OFFICIAL DOCUMENTS"
         title="공식 문서 출력"
-        description="원본 양식에 필요한 데이터만 입력해 같은 확장자로 출력할 예정입니다."
-        action={<Badge tone="amber">생성·다운로드 미구현 · M5</Badge>}
+        description="원본 회의록·활동비·물품 사유서·세부내역을 복제해 작성합니다."
+        action={<Badge tone="amber">원본 4종 작성 · 검토 필요</Badge>}
       />
       <Notice>
-        공식 원본 5종의 파일·해시·구조 조사를 마쳤습니다. 서버 등록·데이터
-        주입·사진·서명 삽입·렌더 비교·다운로드는 아직 구현되지 않았습니다.
+        사용자 제공 원본 4종에 로컬 데이터와 지출 원장을 입력해 DOCX/XLSX로
+        작성합니다. 결과는 검토용이며 회의 현장사진·물품사진 삽입과 서명은 수동
+        보완이 필요합니다. 팀원 참여 확인서 자동 작성은 아직 지원하지 않습니다.
       </Notice>
       <Panel
         title="2R 사업계획서·활동보고서 원본 미확보"
@@ -69,6 +71,7 @@ export default function Documents() {
             ))}
         </ul>
       </Panel>
+      <DocumentCenter />
       <div className="documents-grid">
         {templates.map(([title, ext, desc, file]) => (
           <article className="document-card" key={file}>
@@ -83,15 +86,21 @@ export default function Documents() {
             <span className="document-file">{file}</span>
             <div className="document-state">
               <Badge>원본 로컬 확인</Badge>
-              <span>서버 등록 전</span>
+              <span>로컬 준비 상태는 위에서 확인</span>
             </div>
-            <button
-              className="button"
-              disabled
-              aria-label={`${title} 생성 · 미구현`}
-            >
-              문서 생성 · 미구현
-            </button>
+            {file === "team_participation.docx" ? (
+              <button
+                className="button"
+                disabled
+                aria-label={`${title} 생성 · 미구현`}
+              >
+                문서 생성 · 미구현
+              </button>
+            ) : (
+              <a className="button" href="#document-inputs">
+                입력 초안·자동 작성
+              </a>
+            )}
           </article>
         ))}
       </div>
@@ -114,8 +123,8 @@ export default function Documents() {
           <div>
             <h3>생성 시점을 재현</h3>
             <p>
-              원본 버전·데이터 스냅샷·원본과 결과 해시·생성자·생성시간을 보관할
-              예정입니다.
+              원본 버전·데이터 스냅샷·원본과 결과 해시·생성자·생성시간을 로컬에
+              보관합니다.
             </p>
           </div>
         </div>

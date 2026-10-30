@@ -89,6 +89,27 @@ try {
   assert.equal(initial.body.state, "connected");
   assert.equal(initial.body.records.length, 0);
   assert.equal(initial.body.storage.directory, dataDir);
+  const documentState = await call("/api/documents");
+  assert.equal(documentState.status, 200);
+  assert.equal(documentState.body.ready, false); // No private templates in clean setup.
+  assert.deepEqual(documentState.body.jobs, []);
+  assert.equal(
+    (await call("/api/documents/generate", "POST", { draftIds: [] })).status,
+    422,
+  );
+  assert.equal(
+    (await call("/api/documents/download?job=bad&file=../../secret")).status,
+    404,
+  );
+  const deniedGeneration = await fetch(base + "/api/documents/generate", {
+    method: "POST",
+    headers: {
+      Origin: "https://outside.invalid",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ draftIds: [] }),
+  });
+  assert.equal(deniedGeneration.status, 403);
   const projectId = initial.body.project.id;
   assert.equal((await call("/api/auth/login", "POST", {})).status, 410);
   const calendar = await save("calendarEvents", schedulePlan[0].payload);

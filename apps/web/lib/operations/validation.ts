@@ -56,6 +56,16 @@ export function validatePayload(kind: string, input: unknown): Payload {
   const fail = (message: string) => {
     throw new Error(message);
   };
+  if (kind === "documentDrafts") {
+    for (const key of ["startTime", "endTime"]) {
+      if (p[key] !== null && !/^([01]\d|2[0-3]):[0-5]\d$/.test(String(p[key])))
+        fail("시간은 HH:mm 형식으로 입력해 주세요");
+    }
+    if ((p.startTime === null) !== (p.endTime === null))
+      fail("시작·종료 시간을 함께 입력하거나 모두 비워 주세요");
+    if (p.startTime && String(p.startTime) > String(p.endTime))
+      fail("종료 시간은 시작 시간 이후여야 합니다");
+  }
   if (kind === "calendarEvents") {
     if (String(p.startDate) > String(p.endDate))
       fail("종료일은 시작일 이후여야 합니다");

@@ -18,3 +18,7 @@ supabase/.branches/
 # Private local operating DB, receipts, signatures and backups. Never publish.
 .somssi-local/
 *.somssi-backup.gz
+
+# Python document worker caches
+__pycache__/
+*.pyc

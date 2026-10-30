@@ -63,11 +63,13 @@ for (const [path, text] of routes) {
     assert.ok(!html.includes("원본 앱에서 이용"));
   }
   if (path === "/documents") {
-    assert.equal(
-      (html.match(/<button[^>]*disabled/g) || []).length,
-      5,
-      "All five generators must be disabled",
+    assert.ok(html.includes("원본 양식 자동 작성"));
+    assert.ok(html.includes("입력 초안·자동 작성"));
+    assert.match(
+      html,
+      /disabled[^>]*aria-label="[^"]*팀원 참여 확인서 생성 · 미구현/,
     );
+    assert.ok(!html.includes("생성·다운로드 미구현 · M5"));
   }
   console.log("PASS", path);
 }
