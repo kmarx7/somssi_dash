@@ -3,7 +3,7 @@ import { request as httpRequest } from "node:http";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { randomUUID, createHash } from "node:crypto";
-import { mkdtemp, rm, writeFile, readFile } from "node:fs/promises";
+import { mkdtemp, mkdir, rm, writeFile, readFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { once } from "node:events";
@@ -110,6 +110,61 @@ try {
     body: JSON.stringify({ draftIds: [] }),
   });
   assert.equal(deniedGeneration.status, 403);
+  // Synthetic bytes test transport naming only; not an Office layout test.
+  const docSetup = new LocalStore(dataDir);
+  const draftId = randomUUID(),
+    jobId = randomUUID();
+  docSetup.write(
+    "documentDrafts",
+    draftId,
+    localValues("documentDrafts", {
+      template: "meeting",
+      meetingNumber: 2,
+      date: "2026-10-27",
+    }),
+    0,
+  );
+  const docBytes = Buffer.from("LOCAL TEST ONLY download transport");
+  const manifestBytes = Buffer.from(
+    JSON.stringify({
+      layoutTextChecked: true,
+      files: [
+        {
+          filename: "fixture.docx",
+          title: "fixture",
+          downloadName: "SOMSSI_회의록_제2차_2026-10-27.docx",
+          size: docBytes.length,
+          sha256: createHash("sha256").update(docBytes).digest("hex"),
+        },
+      ],
+    }),
+  );
+  const docFolder = path.join(dataDir, "documents/jobs", jobId);
+  await mkdir(docFolder, { recursive: true });
+  await writeFile(path.join(docFolder, "fixture.docx"), docBytes);
+  await writeFile(path.join(docFolder, "manifest.json"), manifestBytes);
+  docSetup.write(
+    "documentGenerations",
+    randomUUID(),
+    localValues("documentGenerations", {
+      jobId,
+      draftIds: [draftId],
+      status: "검토 필요",
+      manifestHash: createHash("sha256").update(manifestBytes).digest("hex"),
+    }),
+    0,
+  );
+  docSetup.close();
+  const docResponse = await fetch(
+    base + `/api/documents/download?job=${jobId}&file=fixture.docx`,
+  );
+  assert.equal(docResponse.status, 200);
+  const disposition = docResponse.headers.get("content-disposition");
+  assert.equal(
+    decodeURIComponent(disposition.split("filename*=UTF-8''")[1]),
+    "SOMSSI_회의록_제2차_2026-10-27.docx",
+  );
+  assert.deepEqual(Buffer.from(await docResponse.arrayBuffer()), docBytes);
   const projectId = initial.body.project.id;
   assert.equal((await call("/api/auth/login", "POST", {})).status, 410);
   const calendar = await save("calendarEvents", schedulePlan[0].payload);

@@ -5,6 +5,7 @@ import { useWorkspace } from "@/components/operations/workspace";
 import { RecordManager } from "@/components/operations/record-manager";
 import type { GenerationManifest } from "@/lib/documents/service";
 import type { StoredRecord } from "@/lib/operations/domains";
+import { documentDownloadName } from "@/lib/documents/filenames";
 type Status = {
   ready: boolean;
   error?: string;
@@ -170,7 +171,7 @@ export function DocumentCenter() {
                     <li key={file.filename}>
                       <a
                         className="text-link"
-                        download
+                        download={documentDownloadName(file)}
                         href={`/api/documents/download?job=${encodeURIComponent(String(job.record.payload.jobId))}&file=${encodeURIComponent(file.filename)}`}
                       >
                         {file.title} ·{" "}
@@ -179,6 +180,8 @@ export function DocumentCenter() {
                       <small>
                         {file.pages === null ? "" : `${file.pages}쪽 · `}
                         {(file.size / 1024).toFixed(0)} KB
+                        {" · "}
+                        {documentDownloadName(file)}
                       </small>
                     </li>
                   ))}

@@ -17,6 +17,7 @@ const templateFiles = [
 ];
 export type GeneratedFile = {
   filename: string;
+  downloadName?: string;
   title: string;
   sha256: string;
   size: number;
@@ -124,6 +125,24 @@ export function validateDraftSelection(
   if (selected.some((r) => !r))
     throw new LocalStoreError(422, "선택한 문서 입력 초안을 찾지 못했습니다");
   for (const r of selected) {
+    if (r!.payload.previousDraftId) {
+      const prior = records.find(
+        (p) =>
+          p.id === r!.payload.previousDraftId && p.kind === "documentDrafts",
+      );
+      if (
+        r!.payload.template !== "meeting" ||
+        !prior ||
+        prior.payload.template !== "meeting" ||
+        !prior.payload.date ||
+        !r!.payload.date ||
+        String(prior.payload.date) >= String(r!.payload.date)
+      )
+        throw new LocalStoreError(
+          422,
+          "이전 회의는 현재 회의보다 앞선 날짜의 회의 초안으로 연결해 주세요",
+        );
+    }
     if (r!.payload.state === "보관")
       throw new LocalStoreError(422, "보관된 입력 초안은 선택할 수 없습니다");
     const expenses = (r!.payload.expenseIds as string[]).map((id) =>

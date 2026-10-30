@@ -131,3 +131,5 @@ Auth/RLS/클라우드 키를 요구하지 않는다. 로컬 사용자는 감사�
 - 원본과 출력은 `.somssi-local/documents`의 비공개 파일이다. 다운로드 시 허용 파일명·기록·목록 해시·개별 바이트 해시를 검증하며 스냅샷/내부 로그는 제공하지 않는다.
 
 DB 초기화나 파괴적 마이그레이션은 없다. 기존 SQLite 참조 무결성·버전 충돌·감사 이력을 재사용한다. 원본 준비, 렌더 검사와 수동 보완·백업 범위는 DOCUMENT_AUTOMATION.md를 따른다.
+
+회의 후속 확인 확장: documentDrafts에 선택적 meetingNumber/previousDraftId/previousReview를 추가했다. 기존 저장 payload의 누락 키는 그대로 허용해 백업·감사 비교의 호환성을 보존한다. 생성 스냅샷에 이전 초안과 후속 확인을 함께 고정하며 실제 지출·기존 일정은 변경하지 않는다.

@@ -50,7 +50,13 @@ export function validatePayload(kind: string, input: unknown): Payload {
   if (!Object.hasOwn(domains, kind))
     throw new Error("지원하지 않는 데이터 유형입니다");
   const shape = Object.fromEntries(
-    fieldsFor(kind).map((f) => [f.key, fieldSchema(f)]),
+    fieldsFor(kind).map((f) => [
+      f.key,
+      kind === "documentDrafts" &&
+      ["meetingNumber", "previousDraftId", "previousReview"].includes(f.key)
+        ? fieldSchema(f).optional()
+        : fieldSchema(f),
+    ]),
   );
   const p = z.strictObject(shape).parse(input) as Payload;
   const fail = (message: string) => {

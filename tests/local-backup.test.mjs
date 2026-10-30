@@ -122,3 +122,36 @@ test("invalid gzip fails without touching an existing operating directory", asyn
     await rm(root, { recursive: true, force: true });
   }
 });
+
+test("pre-follow-up document drafts restore without adding fields or changing audit payloads", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "somssi-legacy-doc-backup-"));
+  const store = new LocalStore(path.join(root, "live"));
+  let archive;
+  try {
+    const payload = localValues("documentDrafts", {
+      template: "meeting",
+      date: "2026-10-23",
+    });
+    delete payload.meetingNumber;
+    delete payload.previousDraftId;
+    delete payload.previousReview;
+    const rec = store.write("documentDrafts", randomUUID(), payload, 0);
+    assert.deepEqual(rec.payload, payload);
+    archive = await createLocalArchive(store);
+    const folder = await restoreLocalArchive(
+      archive.filename,
+      path.join(root, "restored"),
+    );
+    const restored = new LocalStore(folder);
+    try {
+      assert.deepEqual(restored.get(rec.id).payload, payload);
+      assert.deepEqual(restored.audits(), store.audits());
+    } finally {
+      restored.close();
+    }
+  } finally {
+    store.close();
+    await archive?.cleanup();
+    await rm(root, { recursive: true, force: true });
+  }
+});

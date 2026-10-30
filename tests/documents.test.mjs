@@ -183,3 +183,75 @@ test("download is bound to immutable generation audit, whitelist, manifest and f
     await rm(dir, { recursive: true, force: true });
   }
 });
+
+test("Korean download names preserve extension, meeting number, date and safe RFC5987 headers", async () => {
+  const { documentDownloadName, documentAttachment } =
+    await import("../apps/web/lib/documents/filenames.ts");
+  const file = {
+    filename: "meeting_20261027_00000000-0000-4000-8000-000000000001.docx",
+    title: "제2차 회의록",
+  };
+  assert.equal(
+    documentDownloadName(file),
+    "SOMSSI_회의록_제2차_2026-10-27.docx",
+  );
+  const header = documentAttachment(file);
+  assert.equal(
+    decodeURIComponent(header.split("filename*=UTF-8''")[1]),
+    documentDownloadName(file),
+  );
+  assert.match(header, /filename="SOMSSI_document\.docx"/);
+  const unsafe = documentAttachment({
+    ...file,
+    downloadName: '../bad\r\n".docx',
+  });
+  assert.ok(!/[\r\n]/.test(unsafe));
+  assert.equal(
+    documentDownloadName({ filename: "SOMSSI_documents.zip", title: "bundle" }),
+    "SOMSSI_작성서류_전체.zip",
+  );
+  assert.equal(
+    documentDownloadName({
+      filename: "details_20261030_id.xlsx",
+      title: "details",
+    }),
+    "SOMSSI_창업활동자금_세부내역_2026-10-30.xlsx",
+  );
+});
+
+test("meeting follow-up only links an earlier meeting; selection alone never renumbers meeting two", () => {
+  const prior = {
+    id: randomUUID(),
+    kind: "documentDrafts",
+    payload: localValues("documentDrafts", {
+      template: "meeting",
+      date: "2026-10-23",
+    }),
+  };
+  const next = {
+    id: randomUUID(),
+    kind: "documentDrafts",
+    payload: localValues("documentDrafts", {
+      template: "meeting",
+      date: "2026-10-27",
+      meetingNumber: 2,
+      previousDraftId: prior.id,
+      previousReview: "fixture confirmation",
+    }),
+  };
+  assert.equal(
+    validateDraftSelection([prior, next], [next.id])[0].payload.meetingNumber,
+    2,
+  );
+  for (const change of [
+    { date: "2026-10-23" },
+    { previousDraftId: next.id },
+    { template: "activity" },
+  ])
+    assert.throws(() =>
+      validateDraftSelection(
+        [prior, { ...next, payload: { ...next.payload, ...change } }],
+        [next.id],
+      ),
+    );
+});

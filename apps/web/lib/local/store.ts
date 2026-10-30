@@ -277,7 +277,8 @@ export class LocalStore {
         );
       const links: { field: string; target: string }[] = [];
       for (const field of fieldsFor(kind)) {
-        if (!field.ref || p[field.key] === null) continue;
+        if (!field.ref || p[field.key] === null || p[field.key] === undefined)
+          continue;
         const ids =
           field.type === "refs"
             ? (p[field.key] as string[])
