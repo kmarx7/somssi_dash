@@ -1292,3 +1292,73 @@ tbody tr:last-child td {
 .operation-legacy { margin-bottom: 24px; }
 @media(max-width:800px) { .operation-fields { grid-template-columns: 1fr; } .operation-form { padding: 14px; } }
 .local-path { overflow-wrap: anywhere; white-space: normal; font-size: 11px; max-width: 400px; }
+
+/* Editable local calendar; keeps the existing SOMSSI panel and type tokens. */
+.schedule-plan-note { display:flex; align-items:center; gap:20px; justify-content:space-between; padding:18px 20px; border:1px solid #dce2fa; background:#eef1fc; border-radius:10px; margin:18px 0 24px; }
+.schedule-plan-note strong { font-size:13px; }
+.schedule-plan-note p { font-size:12px; color:var(--muted); margin:7px 0 0; line-height:1.8; max-width:760px; }
+.schedule-plan-note .button { flex-shrink:0; }
+.calendar-toolbar,.calendar-month,.calendar-filters { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.calendar-toolbar { justify-content:space-between; margin-bottom:14px; }
+.calendar-month h3 { margin:0 6px; font-size:20px; min-width:142px; text-align:center; }
+.calendar-month .button { min-height:36px; padding:6px 12px; }
+.calendar-filters label { display:flex; gap:6px; align-items:center; font-size:11px; color:var(--muted); }
+.calendar-filters select { border:1px solid var(--border); border-radius:6px; background:white; color:var(--ink); padding:8px; max-width:140px; }
+.calendar-weekdays,.calendar-grid { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); }
+.calendar-weekdays { margin-top:16px; border:1px solid var(--border); border-bottom:0; background:var(--bg); border-radius:8px 8px 0 0; }
+.calendar-weekdays span { padding:12px 5px; text-align:center; font-size:12px; color:var(--muted); }
+.calendar-weekdays span:first-child { color:#bb3d3d; }
+.calendar-grid { border-left:1px solid var(--border); border-top:1px solid var(--border); }
+.calendar-day { min-width:0; min-height:137px; padding:7px; border-right:1px solid var(--border); border-bottom:1px solid var(--border); background:white; }
+.calendar-day.outside-month { background:#f8f9fb; }
+.calendar-day.outside-month .calendar-day-heading { opacity:.5; }
+.calendar-day.selected-day { background:#f0f3ff; box-shadow:inset 0 0 0 2px #667ad5; }
+.calendar-day-heading { display:flex; align-items:center; justify-content:space-between; margin-bottom:5px; }
+.calendar-day-heading button { border:0; background:transparent; color:var(--ink); min-width:27px; min-height:27px; font-size:12px; border-radius:5px; cursor:pointer; }
+.calendar-day-heading .calendar-add { color:var(--muted); font-size:17px; }
+.calendar-day-heading button:hover { background:#e5eafa; }
+.today-day .calendar-day-heading > button:first-child { background:var(--brand); color:white; font-weight:700; }
+.calendar-chip { display:block; width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; text-align:left; padding:5px 6px; margin-top:4px; font-size:11px; line-height:1.4; border:0; border-left:3px solid var(--event-color); border-radius:3px; background:color-mix(in srgb,var(--event-color) 10%,white); color:var(--event-color); cursor:pointer; }
+.calendar-chip:hover { box-shadow:inset 0 0 0 1px var(--event-color); }
+.calendar-more { font-size:10px; padding:5px 3px; color:var(--brand); border:0; background:transparent; cursor:pointer; }
+.schedule-detail-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:22px; align-items:start; }
+.schedule-editor { scroll-margin-top:20px; min-width:0; }
+.schedule-editor-empty { text-align:center; padding:32px 0 48px; color:var(--muted); font-size:13px; line-height:1.9; }
+.schedule-editor-empty > span { display:block; font-size:36px; color:#a9b3d2; }
+.schedule-agenda { list-style:none; padding:0; margin:0; }
+.schedule-agenda li { border-left:3px solid var(--event-color); padding:0 0 0 14px; margin:20px 0 26px; }
+.schedule-agenda p { font-size:11px; color:var(--muted); line-height:1.85; overflow-wrap:anywhere; margin:8px 0; }
+.schedule-agenda-title { display:flex; align-items:flex-start; gap:12px; justify-content:space-between; }
+.schedule-agenda-title strong { font-size:13px; line-height:1.7; }
+.schedule-agenda .schedule-description { color:var(--ink); white-space:pre-wrap; }
+.schedule-form fieldset { padding:0; margin:0; border:0; min-width:0; }
+.schedule-form .operation-fields { margin-top:10px; gap:14px; }
+.schedule-form .calendar-color-field { border:0; }
+.calendar-color-field legend { font-size:12px; margin-bottom:9px; }
+.calendar-swatches { display:flex; gap:7px; flex-wrap:wrap; }
+.calendar-swatches label { position:relative; display:flex; align-items:center; gap:5px; padding:6px 8px; border:1px solid var(--border); border-radius:6px; cursor:pointer; font-size:11px; }
+.calendar-swatches label.chosen { border-color:var(--event-color); background:color-mix(in srgb,var(--event-color) 8%,white); }
+.calendar-swatches input { position:absolute; opacity:0; width:1px; height:1px; }
+.calendar-swatches label:has(input:focus-visible) { outline:2px solid var(--brand); outline-offset:3px; }
+.calendar-swatches span { width:12px; height:12px; background:var(--event-color); border-radius:50%; }
+.schedule-check { display:flex; align-items:center; gap:8px; font-size:12px; }
+.schedule-check input { width:16px; height:16px; accent-color:var(--brand); }
+.calendar-form-actions { display:flex; gap:10px; margin-top:18px; }
+.schedule-feedback { color:#226944; font-size:13px; padding:12px 0; }
+.cancelled { opacity:.65; text-decoration:line-through; }
+.schedule-original { font-size:12px; color:var(--muted); margin-bottom:24px; line-height:1.8; }
+.schedule-original summary { cursor:pointer; }
+@media(max-width:1100px) { .schedule-detail-grid { grid-template-columns:1fr; gap:0; } .calendar-day { padding:5px; } }
+@media(max-width:600px) {
+  .schedule-plan-note { align-items:flex-start; flex-direction:column; gap:12px; padding:15px; }
+  .calendar-toolbar { align-items:flex-start; gap:14px; }
+  .calendar-month h3 { font-size:17px; min-width:120px; }
+  .calendar-day { padding:3px 2px; min-height:118px; }
+  .calendar-day-heading { gap:0; }
+  .calendar-day-heading button { min-width:21px; min-height:28px; font-size:11px; padding:0; }
+  .calendar-day-heading .calendar-add { min-width:17px; font-size:14px; }
+  .calendar-chip { font-size:9px; padding:4px 2px; border-left-width:2px; }
+  .calendar-more { font-size:9px; padding:5px 0; }
+  .calendar-weekdays span { font-size:10px; }
+  .schedule-detail-grid .panel { padding:16px; }
+}

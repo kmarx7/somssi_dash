@@ -43,7 +43,7 @@ export const navigation: { group: string; items: NavItem[] }[] = [
         title: "실행 일정",
         icon: "calendar",
         phase: "M2 · M3",
-        description: "마일스톤과 활동 일정을 공통 데이터로 연결할 예정입니다.",
+        description: "월간 달력에서 상세 일정을 추가하고 기간·색상을 관리합니다.",
         external: "https://moonlit-rugelach-64f4b6.netlify.app/",
       },
       {

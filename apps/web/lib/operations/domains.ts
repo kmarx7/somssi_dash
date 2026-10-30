@@ -75,6 +75,42 @@ const time = (key: string, label: string, required = true): Field => ({
 const funds = ["1r", "ai", "future"] as const;
 const title = text("title", "이름·제목");
 export const domains: Record<string, Domain> = {
+  calendarEvents: {
+    label: "상세 일정",
+    fields: [
+      title,
+      date("startDate", "시작일"),
+      date("endDate", "종료일"),
+      flag("allDay", "종일"),
+      text("startTime", "시작 시간", false),
+      text("endTime", "종료 시간", false),
+      select("category", "분류", [
+        "고객조사",
+        "상품",
+        "파일럿",
+        "파트너",
+        "멘토링",
+        "예산·정산",
+        "문서·제출",
+        "기타",
+      ]),
+      select("color", "색상", [
+        "blue",
+        "teal",
+        "green",
+        "amber",
+        "rose",
+        "violet",
+        "red",
+        "slate",
+      ]),
+      select("status", "일정 상태", ["계획", "진행 중", "완료", "취소"]),
+      area("description", "세부 내용·산출물"),
+      ref("ownerId", "담당자", "people"),
+      ref("taskId", "연결 업무", "tasks"),
+      ref("hypothesisId", "관련 가설", "hypotheses"),
+    ],
+  },
   people: {
     label: "팀원·참여 인물",
     fields: [

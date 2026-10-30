@@ -8,6 +8,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { once } from "node:events";
 import { localValues } from "./support/local-records.mjs";
+import { schedulePlan } from "../apps/web/data/reference/schedule-plan.ts";
 import { toOperatingData } from "../apps/web/lib/operations/projection.ts";
 import { summarize } from "../apps/web/lib/v2/metrics.ts";
 import { restoreLocalArchive } from "../apps/web/lib/local/archive.ts";
@@ -90,6 +91,35 @@ try {
   assert.equal(initial.body.storage.directory, dataDir);
   const projectId = initial.body.project.id;
   assert.equal((await call("/api/auth/login", "POST", {})).status, 410);
+  const calendar = await save("calendarEvents", schedulePlan[0].payload);
+  await save(
+    "calendarEvents",
+    { ...calendar.payload, title: "LOCAL TEST ONLY calendar", color: "rose" },
+    calendar.id,
+    1,
+  );
+  assert.equal(
+    (
+      await call("/api/records", "POST", {
+        kind: "calendarEvents",
+        id: calendar.id,
+        expectedVersion: 1,
+        payload: calendar.payload,
+      })
+    ).status,
+    409,
+  );
+  assert.equal(
+    (
+      await call("/api/records", "POST", {
+        kind: "calendarEvents",
+        id: randomUUID(),
+        expectedVersion: 0,
+        payload: { ...calendar.payload, endDate: "2026-01-01" },
+      })
+    ).status,
+    422,
+  );
   const product = await save("products", { title: "local product" }),
     scenario = await save("scenarios", {
       productId: product.id,
@@ -248,6 +278,7 @@ try {
   const restored = new LocalStore(restoredDir);
   try {
     assert.equal(restored.list().length, workspace.body.records.length);
+    assert.equal(restored.get(calendar.id).payload.color, "rose");
     assert.deepEqual(
       await readFile(restored.evidencePath(restored.get(evidence.id))),
       pdf,
@@ -262,6 +293,10 @@ try {
   assert.equal(reopened.body.records.length, workspace.body.records.length);
   assert.ok(
     reopened.body.records.some((r) => r.id === task.id && r.version === 2),
+  );
+  assert.equal(
+    reopened.body.records.find((r) => r.id === calendar.id).payload.color,
+    "rose",
   );
   const again = await fetch(base + `/api/evidence/download?id=${evidence.id}`);
   assert.equal(

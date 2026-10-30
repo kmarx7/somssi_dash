@@ -56,6 +56,12 @@ for (const [path, text] of routes) {
     );
     assert.ok(!html.includes("<iframe"), "M1 only links to budget original");
   }
+  if (path === "/schedule") {
+    assert.ok(html.includes("상세 일정 달력"));
+    assert.ok(html.includes("2026-11-23 일정 추가"));
+    assert.ok(html.includes("최종개정 사업계획서 DOCX는 미확보"));
+    assert.ok(!html.includes("원본 앱에서 이용"));
+  }
   if (path === "/documents") {
     assert.equal(
       (html.match(/<button[^>]*disabled/g) || []).length,
