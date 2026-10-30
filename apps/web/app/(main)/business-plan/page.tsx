@@ -17,9 +17,9 @@ export default function BusinessPlan() {
       <ConnectionNotice />
       <RecordManager kind="hypotheses" />
       <Notice>
-        최종개정 사업계획서와 공식 HWP 양식이 미확보되어 문서 간 불일치를 아직
-        판정할 수 없습니다. 아래 내용은 사용자 제공 요구사항에 따른 계획
-        구조입니다.
+        사용자 제공 최종종합본의 Q1–Q4 내용과 검증 목표를 대조했습니다.
+        가격·매출·인터뷰·파일럿은 문서상 가설·목표이며 실제 성과가 아닙니다.
+        공식 HWP 제출 양식은 아직 미확보로 서식 적합성은 확인이 필요합니다.
       </Notice>
       <Panel title="SOMSSI 사업 정의">
         <p>{v2Reference.definition}</p>
@@ -33,7 +33,7 @@ export default function BusinessPlan() {
           <Panel
             key={q.id}
             title={`${q.id} ${q.title}`}
-            meta={<Badge>원문 대조 대기</Badge>}
+            meta={<Badge>내용 대조 · 계획</Badge>}
           >
             <ul className="planned-list">
               {q.items.map((s) => (
@@ -55,7 +55,7 @@ export default function BusinessPlan() {
       </Panel>
       <Panel
         title="기준자료 확보 목록"
-        meta={<Badge>로컬 조사 · 2026-10-29</Badge>}
+        meta={<Badge>로컬 조사 · 2026-10-30</Badge>}
       >
         <div className="table-scroll">
           <table>
@@ -90,12 +90,13 @@ export default function BusinessPlan() {
       <Panel title="가설 등록 시 연결할 항목">
         <p className="muted">
           가설 ID · 검증 목표 · 실험 방법 · 목표/실제 수치와 단위 · 증빙 ·
-          담당자 · 마감 · 검증 상태 · Q1–Q4 반영 위치 · 수정사항. 등록 기능은
-          인증·서버 감사 이력 연결 후 구현합니다.
+          담당자 · 마감 · 검증 상태 · Q1–Q4 반영 위치 · 수정사항. 위 등록 폼에서
+          로컬 저장하고 서버 감사 이력을 남깁니다.
         </p>
         <p className="panel-note">
           출처: {v2Reference.source} · 확인일: {v2Reference.checkedAt} · 상태:
-          계획. 가격·팀원·실적은 원본과 실제 자료 확인 전 미입력입니다.
+          계획. 문서상 가격은 가설이며 팀원의 실제 관계·참여 기간과 실적은 별도
+          확인합니다.
         </p>
       </Panel>
     </>

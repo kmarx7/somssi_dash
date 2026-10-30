@@ -52,10 +52,10 @@ export default function Documents() {
         meta={<Badge tone="amber">생성 불가</Badge>}
       >
         <p className="muted">
-          최종개정 사업계획서, 공식 사업계획서·활동보고서 HWP/HWPX가 필요합니다.
-          활동비 증빙 DOCX는 2R 활동보고서 양식을 대신하지 않습니다. DOCX
-          변환·10/5쪽 제한·맑은고딕 12pt/표 10pt는 원본 확보 후 렌더링으로
-          검증합니다.
+          최종종합본 DOCX는 로컬에 확보했습니다. 공식 사업계획서·활동보고서
+          HWP/HWPX는 추가 확보가 필요합니다. 활동비 증빙 DOCX는 2R 활동보고서
+          양식을 대신하지 않습니다. DOCX 변환·10/5쪽 제한·맑은고딕 12pt/표
+          10pt는 원본 확보 후 렌더링으로 검증합니다.
         </p>
         <ul className="planned-list">
           {sourceRegistry
@@ -63,7 +63,9 @@ export default function Documents() {
               ["final-plan", "official-plan", "official-report"].includes(s.id),
             )
             .map((s) => (
-              <li key={s.id}>{s.title} · 미확보</li>
+              <li key={s.id}>
+                {s.title} · {s.available ? "로컬 확보 · 내용 대조" : "미확보"}
+              </li>
             ))}
         </ul>
       </Panel>

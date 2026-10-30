@@ -70,7 +70,10 @@ test("initial plan installs resumably; edits persist with audit and plans never 
   try {
     for (const row of schedulePlan.slice(0, 5))
       store.write("calendarEvents", row.id, row.payload, 0);
-    assert.equal(missingSchedulePlan(store.list().map((r) => r.id)).length, 14);
+    assert.equal(
+      missingSchedulePlan(store.list().map((r) => r.id)).length,
+      schedulePlan.length - 5,
+    );
     const original = store.get(schedulePlan[0].id);
     const updated = {
       ...original.payload,
@@ -83,10 +86,10 @@ test("initial plan installs resumably; edits persist with audit and plans never 
     store.write("calendarEvents", original.id, updated, original.version);
     for (const row of missingSchedulePlan(store.list().map((r) => r.id)))
       store.write("calendarEvents", row.id, row.payload, 0);
-    assert.equal(store.list().length, 19);
+    assert.equal(store.list().length, schedulePlan.length);
     assert.equal(missingSchedulePlan(store.list().map((r) => r.id)).length, 0);
     assert.equal(store.get(original.id).payload.title, "changed");
-    assert.equal(store.audits().length, 20);
+    assert.equal(store.audits().length, schedulePlan.length + 1);
     assert.equal(
       store.audits().find((a) => a.before_value)?.before_value.payload.color,
       "teal",
@@ -119,8 +122,8 @@ test("initial plan installs resumably; edits persist with audit and plans never 
       { ...updated, status: "취소" },
       2,
     );
-    assert.equal(store.list().length, 19);
-    assert.equal(store.audits().length, 21);
+    assert.equal(store.list().length, schedulePlan.length);
+    assert.equal(store.audits().length, schedulePlan.length + 2);
   } finally {
     store.close();
     await rm(dir, { recursive: true, force: true });
@@ -149,4 +152,72 @@ test("old tasks use Korea dates and milestones remain visible without migration"
     true,
   );
   assert.equal(entries.filter((e) => onDay(e, "2026-11-01")).length, 2);
+});
+
+test("document alignment preserves manual fields and completed history; applying revisions is idempotent", async () => {
+  const { previousSchedulePlan } =
+    await import("../apps/web/data/reference/schedule-plan-v1.ts");
+  const { schedulePlanChanges } =
+    await import("../apps/web/data/reference/schedule-plan.ts");
+  const stored = previousSchedulePlan.map((r) => ({
+    ...r,
+    kind: "calendarEvents",
+    version: 1,
+    project_id: randomUUID(),
+    created_by: randomUUID(),
+    created_at: "",
+    updated_at: "",
+  }));
+  stored[0].payload = {
+    ...stored[0].payload,
+    title: "manually renamed",
+    startDate: "2026-11-02",
+    endDate: "2026-11-04",
+    color: "rose",
+    ownerId: randomUUID(),
+    evidenceIds: [randomUUID()],
+    status: "진행 중",
+  };
+  stored[1].payload = {
+    ...stored[1].payload,
+    description: "manually edited detail",
+    source: "custom source",
+  };
+  stored[2].payload = { ...stored[2].payload, status: "완료" };
+  stored[3].payload = { ...stored[3].payload, status: "취소" };
+  const changes = schedulePlanChanges(stored);
+  assert.equal(changes.filter((r) => r.version === 0).length, 5);
+  const first = changes.find((r) => r.id === stored[0].id);
+  assert.equal(first.version, 1);
+  for (const key of [
+    "title",
+    "startDate",
+    "endDate",
+    "color",
+    "ownerId",
+    "evidenceIds",
+    "status",
+  ])
+    assert.deepEqual(first.payload[key], stored[0].payload[key]);
+  assert.match(first.payload.description, /FIT/);
+  const second = changes.find((r) => r.id === stored[1].id);
+  assert.equal(second, undefined); // Only user-owned description/source differed for this record.
+  assert.equal(
+    changes.some((r) => r.id === stored[2].id || r.id === stored[3].id),
+    false,
+  );
+  const after = stored
+    .map((r) => changes.find((change) => change.id === r.id) ?? r)
+    .concat(changes.filter((r) => r.version === 0));
+  const afterRecords = after.map((r) => ({ ...r, kind: "calendarEvents" }));
+  assert.deepEqual(schedulePlanChanges(afterRecords), []);
+  assert.equal(schedulePlan.length, 24);
+  assert.equal(
+    schedulePlan.filter((r) => r.payload.startTime === "14:00").length,
+    1,
+  );
+  assert.match(
+    schedulePlan.find((r) => r.payload.startTime === "14:00").payload.title,
+    /제출 마감/,
+  );
 });

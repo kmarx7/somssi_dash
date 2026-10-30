@@ -49,7 +49,7 @@ for (const [path, text] of routes) {
   }
   if (path === "/dashboard/demo") assert.ok(html.includes("400,000원"));
   if (path === "/products")
-    assert.ok(html.includes("최종개정 사업계획서가 없어"));
+    assert.ok(html.includes("최종종합본의 가격·원가·정원은"));
   if (path === "/budget/allocate") {
     assert.ok(
       html.includes("https://coruscating-duckanoo-f67d1c.netlify.app/"),
@@ -59,7 +59,7 @@ for (const [path, text] of routes) {
   if (path === "/schedule") {
     assert.ok(html.includes("상세 일정 달력"));
     assert.ok(html.includes("2026-11-23 일정 추가"));
-    assert.ok(html.includes("최종개정 사업계획서 DOCX는 미확보"));
+    assert.ok(html.includes("최종종합본 Q1–Q4의 검증 목표"));
     assert.ok(!html.includes("원본 앱에서 이용"));
   }
   if (path === "/documents") {

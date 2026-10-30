@@ -1,7 +1,7 @@
 // User-supplied planning references, never imported as observed operating results.
 export const v2Reference = {
-  checkedAt: "2026-10-29",
-  source: "사용자 제공 SOMSSI Dashboard V2 요구사항 (2026-10-29)",
+  checkedAt: "2026-10-30",
+  source: "SOMSSI_1R_최종종합본.docx Q1~Q4 · 사용자 V2 요구사항",
   status: "계획",
   deadline: "2026-11-23T14:00:00+09:00",
   vision: "거쳐 가는 인천 → 찾아와 머무는 인천",
@@ -52,10 +52,10 @@ export const v2Reference = {
 export const sourceRegistry = [
   {
     id: "final-plan",
-    title: "최종개정 사업계획서",
-    file: "SOMSSI_1R_사업계획서_최종개정안_10페이지.docx",
-    available: false,
-    purpose: "비전·가격·상품·성장전략 대조",
+    title: "1R 사업계획서 최종종합본",
+    file: "SOMSSI_1R_최종종합본.docx",
+    available: true,
+    purpose: "Q1~Q4·목표·가격 가설 대조 완료 · 공식 양식/실적 확정 아님",
   },
   {
     id: "official-plan",
@@ -156,3 +156,39 @@ export const planSections = [
     ],
   },
 ] as const;
+
+// Document assumptions only; never seed these as actual sales or confirmed products.
+export const finalPlanReference = {
+  file: "SOMSSI_1R_최종종합본.docx",
+  checkedAt: "2026-10-30",
+  sha256: "f3716c83565f94cbf39b5494337a7c1b48ce6145d5dfb13a561d46cb28152faa",
+  status: "가설",
+  prices: [
+    { name: "BASIC", priceWon: 89000, scope: "기본 60분 체험" },
+    {
+      name: "SIGNATURE",
+      priceWon: 129000,
+      scope: "BASIC + 한복 + 개인 연주 영상",
+    },
+    {
+      name: "PREMIUM",
+      priceWon: 150000,
+      scope: "SIGNATURE + 영문 교재 또는 다과",
+    },
+    {
+      name: "SPECIAL",
+      priceWon: 200000,
+      scope: "소규모 전용 회차 + 별도 협의 구성",
+    },
+  ],
+  targets: {
+    interviewsMin: 20,
+    interviewsMax: 30,
+    pilotsMin: 1,
+    pilotsMax: 2,
+    estimatesMin: 3,
+    estimatesMax: 5,
+    channelsMin: 2,
+    channelsMax: 3,
+  },
+} as const;

@@ -16,7 +16,7 @@ import {
   type CalendarEntry,
 } from "@/lib/operations/calendar";
 import {
-  missingSchedulePlan,
+  schedulePlanChanges,
   schedulePlan,
 } from "@/data/reference/schedule-plan";
 const categories = domains.calendarEvents.fields.find(
@@ -64,7 +64,7 @@ export function ScheduleCalendar() {
   );
   const days = monthDays(month);
   const dayEntries = filtered.filter((e) => onDay(e, selected));
-  const missing = missingSchedulePlan(workspace.records.map((r) => r.id));
+  const pending = schedulePlanChanges(workspace.records);
   function open(day: string, entry?: CalendarEntry) {
     setSelected(day);
     setError("");
@@ -125,18 +125,16 @@ export function ScheduleCalendar() {
       const response = await fetch("/api/workspace", { cache: "no-store" });
       if (!response.ok) throw new Error("저장 상태를 확인하지 못했습니다.");
       const current = await response.json();
-      for (const row of missingSchedulePlan(
-        current.records.map((r: { id: string }) => r.id),
-      )) {
-        await saveRecord({ ...row, version: 0 });
+      for (const row of schedulePlanChanges(current.records)) {
+        await saveRecord(row);
         added++;
       }
       setMessage(
-        `초기 계획 ${added}개를 추가했습니다. 날짜·담당자·색상을 실제 수행 계획에 맞게 수정하세요.`,
+        `사업계획 기준 ${added}개 일정을 반영했습니다. 날짜·담당자·색상을 실제 수행 계획에 맞게 수정하세요.`,
       );
     } catch (e) {
       setError(
-        `${added}개 저장 후 중단했습니다. ${e instanceof Error ? e.message : "저장 실패"} 다시 추가하면 저장되지 않은 항목만 이어서 추가합니다.`,
+        `${added}개 저장 후 중단했습니다. ${e instanceof Error ? e.message : "저장 실패"} 다시 반영하면 미반영 항목만 이어서 처리합니다.`,
       );
     } finally {
       await refresh();
@@ -163,23 +161,24 @@ export function ScheduleCalendar() {
       <ConnectionNotice />
       <div className="schedule-plan-note">
         <div>
-          <strong>2R 초기 실행 계획 · {schedulePlan.length}개</strong>
+          <strong>2R 사업계획 기반 일정 · {schedulePlan.length}개</strong>
           <p>
-            사용자 제공 V2 요구사항 기준입니다. 최종개정 사업계획서 DOCX는
-            미확보·미대조 상태이며, 모든 일정은 수정 가능한 계획입니다. 시간은
+            최종종합본 Q1–Q4의 검증 목표·산출물을 대조했습니다(2026.10.30). 세부
+            운영 날짜는 문서에 명시되지 않아 사용자 초기 계획을 유지합니다.
+            목표·가격은 검증 전 가설이며 모든 일정은 수정 가능합니다.
             한국시간(KST) 기준입니다.
           </p>
         </div>
-        {missing.length > 0 ? (
+        {pending.length > 0 ? (
           <button
             className="button"
             disabled={!ready || busy}
             onClick={() => void installPlan()}
           >
-            초기 계획 {missing.length}개 추가
+            사업계획 기준 {pending.length}개 반영
           </button>
         ) : (
-          <Badge tone="blue">초기 계획 등록됨</Badge>
+          <Badge tone="blue">사업계획 반영됨</Badge>
         )}
       </div>
       {message && (
