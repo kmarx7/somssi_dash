@@ -46,8 +46,8 @@ async function saveRecord(draft: Draft) {
 }
 export function ScheduleCalendar() {
   const { workspace, refresh } = useWorkspace();
-  const [month, setMonth] = useState("2026-11");
-  const [selected, setSelected] = useState("2026-11-01");
+  const [month, setMonth] = useState(() => koreaDay().slice(0, 7));
+  const [selected, setSelected] = useState(() => koreaDay());
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
   const [draft, setDraft] = useState<Draft | null>(null);
@@ -369,6 +369,26 @@ export function ScheduleCalendar() {
                     · 출처: {String(e.record.payload.source)} · 확인일:{" "}
                     {String(e.record.payload.checkedAt ?? "미입력")}
                   </p>
+                  {Array.isArray(e.record.payload.evidenceIds) &&
+                    e.record.payload.evidenceIds.length > 0 && (
+                      <div className="schedule-evidence" aria-label="연결 증빙">
+                        {e.record.payload.evidenceIds.map((id) => {
+                          const proof = workspace.records.find(
+                            (r) => r.id === id && r.kind === "evidence",
+                          );
+                          return proof ? (
+                            <a
+                              key={id}
+                              className="text-link"
+                              href={`/api/evidence/download?id=${encodeURIComponent(id)}`}
+                              download
+                            >
+                              {String(proof.payload.title)}
+                            </a>
+                          ) : null;
+                        })}
+                      </div>
+                    )}
                   {e.editable ? (
                     <button
                       className="text-link"

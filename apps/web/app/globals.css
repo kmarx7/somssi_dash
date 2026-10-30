@@ -1362,3 +1362,5 @@ tbody tr:last-child td {
   .calendar-weekdays span { font-size:10px; }
   .schedule-detail-grid .panel { padding:16px; }
 }
+
+.schedule-evidence { display:flex; flex-wrap:wrap; gap:8px 14px; margin:10px 0; font-size:11px; }
